@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amine Rent A Car — Location de voitures à Tunis, Le Bardo &amp; Hammamet | Amine Rent A Car</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Pacifico&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --paper:#FBF9F6;
+    --sand:#F1E9DC;
+    --red:#C1272D;
+    --red-dark:#8f1622;
+    --slate:#4b4f52;
+    --text:#232323;
+    --text-soft:#5c5f61;
+    --line: rgba(26,26,26,0.13);
+    --radius: 10px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Barlow Condensed', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    font-weight:800;
+    line-height:0.98;
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
+  :focus-visible{outline:3px solid var(--slate); outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- Gear-shift badge (signature element, from the real logo) ---------- */
+  .gearbadge{ width:46px; height:46px; flex:none; }
+  .gearbadge.lg{ width:96px; height:96px; }
+
+  /* ---------- Brand lockup ---------- */
+  .brandmark{ display:flex; align-items:center; gap:12px; position:relative; padding-left:14px; }
+  .brandmark::before{
+    content:""; position:absolute; left:0; top:2px; bottom:2px; width:4px; background:var(--red); border-radius:2px;
+  }
+  .wordstack{ line-height:1; }
+  .word-amine{
+    font-family:'Barlow Condensed'; font-weight:900; font-size:23px; letter-spacing:0.02em; color:var(--ink);
+  }
+  .word-rent{
+    font-family:'Pacifico', cursive; font-size:14px; color:var(--red); margin-top:2px; text-transform:none; letter-spacing:0;
+  }
+
+  /* ---------- Plate-style phone badge ---------- */
+  .plate{
+    display:inline-flex; align-items:center; gap:9px;
+    background:#fff; border:2.5px solid var(--ink); border-radius:7px;
+    padding:9px 15px; position:relative;
+    box-shadow: 0 3px 0 var(--ink);
+    font-family:'Barlow Condensed', sans-serif; font-weight:800;
+    color:var(--red); letter-spacing:0.03em;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .plate::before,.plate::after{
+    content:""; position:absolute; width:5px; height:5px; border-radius:50%;
+    background:rgba(26,26,26,0.5); top:5px;
+  }
+  .plate::before{left:6px;} .plate::after{right:6px;}
+  .plate:hover, .plate:focus-visible{ transform: translateY(-2px) rotate(-0.5deg); box-shadow: 0 5px 0 var(--ink); }
+  .plate .num{ font-size:18px; }
+  .plate .lbl{ font-size:10.5px; color:var(--slate); font-family:'Work Sans'; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; }
+
+  /* ---------- WhatsApp ---------- */
+  .btn-whatsapp{ background:#2FAE60; color:#fff; }
+  .btn-whatsapp:hover{ background:#248549; transform:translateY(-2px); }
+  .wa-btn{ width:42px; height:42px; border-radius:50%; background:#2FAE60; display:flex; align-items:center; justify-content:center; color:#fff; transition:transform .15s ease, background .15s ease; flex:none; }
+  .wa-btn:hover{ transform:translateY(-2px); background:#248549; }
+  .wa-note{ font-size:13px; color:#b7bbbe; margin-top:16px; max-width:42ch; }
+  .wa-note.on-light{ color:var(--text-soft); }
+
+  /* ---------- Header ---------- */
+  header{ position:sticky; top:0; z-index:50; background:rgba(251,249,246,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+  .navlinks{ display:flex; align-items:center; gap:30px; font-weight:600; font-size:15px; }
+  .navlinks a{ color:var(--text-soft); transition:color .15s; }
+  .navlinks a:hover{ color:var(--ink); }
+  .navcall{ display:flex; align-items:center; gap:14px; }
+  .burger{ display:none; background:none; border:none; cursor:pointer; }
+
+  @media (max-width: 860px){
+    .navlinks{
+      position:fixed; inset:64px 0 auto 0; background:var(--paper);
+      flex-direction:column; align-items:flex-start; gap:0;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-120%); transition:transform .25s ease;
+      padding: 6px 28px 18px;
+    }
+    .navlinks.open{ transform:translateY(0); }
+    .navlinks a{ padding:12px 0; width:100%; border-bottom:1px solid var(--line); }
+    .burger{ display:block; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ background: linear-gradient(180deg, var(--ink) 0%, #262626 100%); color:var(--paper); position:relative; overflow:hidden; padding: 78px 0 96px; }
+  .lane{ position:absolute; left:50%; top:0; bottom:0; width:6px; transform:translateX(-50%);
+    background-image: repeating-linear-gradient(var(--paper) 0 34px, transparent 34px 64px); opacity:0.06;
+    animation: drive 2.6s linear infinite; }
+  @keyframes drive{ from{ background-position-y:0; } to{ background-position-y:64px; } }
+  .hero-gear{ position:absolute; right:-60px; top:-60px; opacity:0.08; }
+  .hero-gear circle{ fill:transparent; stroke:var(--paper); }
+  .hero-gear text, .hero-gear line{ stroke:var(--paper); fill:var(--paper); }
+
+  .hero-grid{ position:relative; display:grid; grid-template-columns: 1.25fr 0.9fr; gap:48px; align-items:center; }
+  .eyebrow{ font-weight:700; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); margin-bottom:16px; }
+  .hero .eyebrow{ color:#e8898d; }
+  .hero h1{ font-size: clamp(44px, 6vw, 74px); max-width:12ch; }
+  .hero p.lede{ font-family:'Work Sans', sans-serif; text-transform:none; font-weight:400; font-size:17px; color:#cfd3d6; max-width:46ch; margin-top:20px; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+  .btn{ font-weight:700; font-size:15px; padding:13px 22px; border-radius:8px; display:inline-flex; align-items:center; gap:8px; transition: transform .15s ease, background .15s ease; }
+  .btn-primary{ background:var(--red); color:#fff; }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--red-dark); }
+  .btn-ghost{ border:1.5px solid rgba(251,247,239,0.4); color:var(--paper); }
+  .btn-ghost:hover{ border-color:var(--paper); }
+
+  .plateboard{ background:#232323; border:1px solid rgba(251,247,239,0.12); border-radius:16px; padding:26px; }
+  .plateboard h3{ font-size:15px; text-transform:none; font-family:'Work Sans'; font-weight:600; color:#aeb3b6; letter-spacing:0; margin-bottom:16px; }
+  .plateboard .plate{ width:100%; justify-content:center; margin-bottom:12px; }
+  .plateboard .plate .num{ font-size:20px; }
+
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Trust strip ---------- */
+  .strip{ border-bottom:1px solid var(--line); background:var(--sand); }
+  .strip .wrap{ display:grid; grid-template-columns:repeat(3,1fr); padding:22px 28px; }
+  .strip .item{ text-align:center; font-size:14px; font-weight:600; color:var(--text-soft); border-left:1px solid var(--line); }
+  .strip .item:first-child{ border-left:none; }
+  .strip .item b{ display:block; font-family:'Barlow Condensed'; font-weight:800; font-size:26px; color:var(--ink); text-transform:uppercase; }
+  @media (max-width:700px){
+    .strip .wrap{ grid-template-columns:1fr; gap:14px; }
+    .strip .item{ border-left:none; border-top:1px solid var(--line); padding-top:14px; }
+    .strip .item:first-child{ border-top:none; padding-top:0; }
+  }
+
+  /* ---------- Sections generic ---------- */
+  section{ padding:88px 0; }
+  .sec-head{ max-width:640px; margin-bottom:48px; }
+  .sec-head .eyebrow{ color:var(--red-dark); }
+  .sec-head h2{ font-size:clamp(32px,4vw,46px); color:var(--ink); }
+  .sec-head p{ color:var(--text-soft); margin-top:12px; font-size:16px; }
+
+  /* ---------- Fleet / pricing ---------- */
+  .fleet-cats{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:start; }
+  .cat-card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+  .cat-card .cat-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:6px; }
+  .cat-card h3{ font-size:22px; color:var(--ink); }
+  .cat-card .cat-note{ font-size:12px; color:var(--text-soft); font-weight:600; }
+  .cat-card ul{ list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:0; }
+  .cat-card li{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 0; border-top:1px solid var(--line); }
+  .cat-card li:first-child{ border-top:none; }
+  .veh-name{ font-size:15px; font-weight:600; color:var(--text); }
+  .veh-trans{ display:block; font-size:12px; font-weight:500; color:var(--text-soft); margin-top:2px; }
+  .price{
+    font-family:'Barlow Condensed'; font-weight:800; font-size:15px; color:var(--red);
+    background:var(--sand); border-radius:20px; padding:5px 12px; white-space:nowrap;
+  }
+  .fleet-note{ margin-top:26px; font-size:13.5px; color:var(--text-soft); }
+  @media (max-width:960px){ .fleet-cats{ grid-template-columns:1fr; } }
+
+  /* ---------- Reservation steps ---------- */
+  .reserver{ background:var(--sand); }
+  .process-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .step-card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; }
+  .step-num{ font-family:'Barlow Condensed'; font-weight:900; font-size:38px; color:var(--red); line-height:1; opacity:0.85; }
+  .step-card h3{ font-size:21px; color:var(--ink); margin-top:8px; }
+  .step-card p{ font-size:14.5px; color:var(--text-soft); margin-top:10px; }
+  .step-card .conditions{ margin-top:12px; padding-top:12px; border-top:1px dashed var(--line); font-size:13px; color:var(--slate); font-weight:600; }
+  @media (max-width:900px){ .process-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Agences / route strip ---------- */
+  .agences{ background:var(--ink); color:var(--paper); }
+  .agences .sec-head h2{ color:var(--paper); }
+  .agences .sec-head p{ color:#c7cbce; }
+  .route{ position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:0; padding-top:20px; }
+  .route::before{ content:""; position:absolute; top:34px; left:6%; right:6%; height:2px;
+    background-image: repeating-linear-gradient(90deg, var(--red) 0 14px, transparent 14px 26px); }
+  .stop{ position:relative; padding:0 14px; text-align:left; }
+  .stop .dot{ width:16px; height:16px; border-radius:50%; background:var(--red); border:3px solid var(--ink); outline:2px solid var(--red); margin-bottom:20px; position:relative; z-index:2; }
+  .stop.siege .dot{ background:#cfd3d6; outline-color:#cfd3d6; width:20px; height:20px; }
+  .stop .kicker{ font-size:11.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--red); }
+  .stop.siege .kicker{ color:#cfd3d6; }
+  .stop h3{ font-size:26px; margin-top:6px; }
+  .stop p{ font-size:14px; color:#b7bbbe; margin-top:8px; }
+  @media (max-width:820px){
+    .route{ grid-template-columns:1fr; gap:34px; }
+    .route::before{ left:9px; right:auto; top:0; bottom:0; width:2px; height:auto;
+      background-image: repeating-linear-gradient(180deg, var(--red) 0 14px, transparent 14px 26px); }
+    .stop{ padding-left:34px; }
+    .stop .dot{ position:absolute; left:0; top:2px; margin-bottom:0; }
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+  .info-list{ display:flex; flex-direction:column; gap:22px; }
+  .info-row{ display:flex; gap:16px; align-items:flex-start; }
+  .info-row .ic{ width:40px; height:40px; flex:none; border-radius:8px; background:var(--sand); display:flex; align-items:center; justify-content:center; color:var(--red-dark); }
+  .info-row h4{ font-family:'Work Sans'; font-weight:700; font-size:15px; }
+  .info-row p, .info-row a{ color:var(--text-soft); font-size:15px; margin-top:2px; }
+  .info-row a:hover{ color:var(--red); }
+  .phone-plates{ display:flex; gap:10px; margin-top:6px; flex-wrap:wrap; }
+  .gerant-tag{ display:inline-block; margin-top:6px; font-size:12.5px; font-weight:700; color:var(--slate); background:var(--sand); border-radius:20px; padding:4px 12px; }
+  .mapcard{ border-radius:14px; overflow:hidden; border:1px solid var(--line); background:#fff; }
+  .mapcard iframe{ width:100%; height:300px; border:0; display:block; }
+  .mapcard .maplink{ display:block; padding:12px 16px; font-size:13.5px; font-weight:600; color:var(--red-dark); border-top:1px solid var(--line); }
+  @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--sand); border-top:1px solid var(--line); padding:36px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-size:13.5px; color:var(--text-soft); }
+  .foot-row .plate{ transform:scale(0.85); }
+
+  #bookingForm label{font-size:14px;font-weight:600;color:var(--text);}
+  #bookingForm input,#bookingForm select,#bookingForm textarea{font-family:inherit;font-size:14px;}
+  @media (max-width:700px){
+    #bookingForm > div:first-of-type{grid-template-columns:1fr !important;}
+    #bookingForm label[style*="grid-column"]{grid-column:auto !important;}
+  }
+
+  /* ---------- New trust / chauffeur / availability / maps blocks ---------- */
+  .hero-trust{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .hero-trust span{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid rgba(251,247,239,.18);border-radius:999px;background:rgba(255,255,255,.05);font-size:12.5px;font-weight:600;color:#e2e5e7}
+  .featured-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .featured-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px;position:relative}
+  .featured-card .hot{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#fff;background:var(--red);padding:4px 7px;border-radius:999px;margin-bottom:12px}
+  .featured-card h3{font-size:22px}
+  .featured-card p{font-size:12.5px;color:var(--text-soft);margin-top:6px}
+  .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .service-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .service-card .service-icon{font-size:26px}
+  .service-card h3{font-size:20px;margin-top:12px}
+  .service-card p{font-size:13.5px;color:var(--text-soft);margin-top:8px}
+  .payment-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .payment-badge{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 15px;font-weight:700;font-size:13px}
+  .on-demand{margin-top:28px;background:var(--sand);border-radius:14px;padding:26px}
+  .on-demand-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+  .on-demand-item{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;font-weight:600;font-size:14px}
+  .map-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .map-buttons a{display:inline-flex;padding:8px 11px;border:1px solid rgba(251,247,239,.25);border-radius:7px;font-size:12px;font-weight:700;color:#fff}
+  .map-buttons a:hover{border-color:#fff}
+  .sos-card{margin-top:18px;padding:18px;border:1px solid rgba(199,39,45,.25);background:rgba(199,39,45,.08);border-radius:10px}
+  .sos-card strong{color:#fff}
+  .sos-card a{color:#fff;font-weight:800}
+  @media (max-width:1050px){.featured-grid{grid-template-columns:repeat(3,1fr)}.service-grid{grid-template-columns:repeat(2,1fr)}.on-demand-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:700px){.featured-grid,.service-grid,.on-demand-grid{grid-template-columns:1fr}.hero-trust{gap:7px}}
+
+  /* ---------- Réservation en direct : badges, cartes cliquables, modal ---------- */
+  .cat-card.animated{ opacity:0; transform:translateY(20px); animation:cardIn .6s cubic-bezier(.21,.9,.32,1) forwards; }
+  .fleet-cats .cat-card.animated:nth-child(1){ animation-delay:.05s; }
+  .fleet-cats .cat-card.animated:nth-child(2){ animation-delay:.16s; }
+  .fleet-cats .cat-card.animated:nth-child(3){ animation-delay:.27s; }
+  .fleet-cats .cat-card.animated:nth-child(4){ animation-delay:.38s; }
+  @keyframes cardIn{ to{ opacity:1; transform:translateY(0); } }
+
+  .cat-card li.bookable{ cursor:pointer; border-radius:8px; transition:background .2s ease, transform .18s ease, padding .2s ease; }
+  .cat-card li.bookable:hover{ background:var(--sand); transform:translateX(3px); padding-left:8px; padding-right:8px; }
+  .cat-card li.is-off{ cursor:default; opacity:.72; }
+  .cat-card li.is-off:hover{ background:none; transform:none; padding-left:0; padding-right:0; }
+
+  .badge-dispo, .badge-indispo{
+    font-weight:700; font-size:11px; color:#fff; border-radius:20px; padding:5px 12px;
+    white-space:nowrap; text-transform:uppercase; letter-spacing:.4px; display:inline-flex; align-items:center; gap:6px; font-family:'Work Sans';
+  }
+  .badge-dispo{ background:#2FAE60; }
+  .badge-indispo{ background:#9aa0a6; }
+  .badge-dispo::before{ content:""; width:7px; height:7px; border-radius:50%; background:#fff; animation:pulse 1.6s infinite; }
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(255,255,255,.6);} 70%{box-shadow:0 0 0 6px rgba(255,255,255,0);} 100%{box-shadow:0 0 0 0 rgba(255,255,255,0);} }
+
+  .resv-modal{ display:none; position:fixed; inset:0; z-index:1000; background:rgba(26,26,26,.72); align-items:center; justify-content:center; backdrop-filter:blur(6px); animation:overlayIn .25s ease; }
+  @keyframes overlayIn{ from{opacity:0;} to{opacity:1;} }
+  .resv-content{ background:#fff; padding:28px; border-radius:16px; max-width:480px; width:92%; position:relative; box-shadow:0 25px 60px rgba(0,0,0,.35); animation:modalPop .35s cubic-bezier(.2,.9,.3,1.3); max-height:90vh; overflow-y:auto; }
+  @keyframes modalPop{ from{opacity:0; transform:scale(.94) translateY(10px);} to{opacity:1; transform:scale(1) translateY(0);} }
+  .resv-close{ position:absolute; right:16px; top:12px; font-size:24px; cursor:pointer; font-weight:bold; color:var(--ink); width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:50%; transition:background .2s; }
+  .resv-close:hover{ background:var(--sand); }
+  .resv-content h3{ font-size:24px; text-transform:none; letter-spacing:0; }
+  #modalCarStatus{ margin:6px 0 10px; font-weight:700; font-size:12px; text-transform:uppercase; }
+  .resv-form{ display:grid; gap:12px; text-align:left; margin-top:6px; }
+  .resv-form label{ font-size:12px; font-weight:700; color:var(--ink); margin-bottom:4px; display:block; text-transform:none; }
+  .resv-form input{ width:100%; padding:11px 12px; border:1.5px solid var(--line); border-radius:8px; font-size:14px; transition:border-color .2s; font-family:'Work Sans'; }
+  .resv-form input:focus{ outline:none; border-color:var(--red); }
+  .resv-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .resv-submit{ display:inline-flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,var(--red),var(--red-dark)); color:#fff; border:none; padding:13px 20px; border-radius:8px; font-weight:700; margin-top:10px; width:100%; cursor:pointer; font-size:15px; transition:transform .15s ease, box-shadow .2s ease; font-family:'Work Sans'; }
+  .resv-submit:hover:not(:disabled){ transform:translateY(-2px); box-shadow:0 10px 20px rgba(193,39,45,.3); }
+  .resv-submit:disabled{ background:#9aa0a6; cursor:not-allowed; }
+  .resv-spinner{ width:16px; height:16px; border:2.5px solid rgba(255,255,255,.5); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; }
+  @keyframes spin{ to{transform:rotate(360deg);} }
+  .resv-error{ background:#fdecec; color:var(--red-dark); border:1px solid #f5c2c2; padding:10px 12px; border-radius:8px; font-size:13.5px; margin-top:10px; display:none; }
+  .resv-confirm{ text-align:center; padding:6px 4px 4px; }
+  .resv-confirm-icon{ width:62px; height:62px; border-radius:50%; background:#e9f9f0; color:#2FAE60; display:flex; align-items:center; justify-content:center; margin:4px auto 14px; font-size:30px; animation:popIn .4s ease; }
+  @keyframes popIn{ from{transform:scale(0);} to{transform:scale(1);} }
+  .resv-timeline{ text-align:left; margin:16px 0; padding:14px 16px; background:var(--sand); border-radius:10px; font-size:13.5px; color:var(--slate); }
+  .resv-timeline b{ color:var(--red-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brandmark">
+      <svg class="gearbadge" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="56" fill="var(--ink)"/>
+        <g stroke="var(--paper)" stroke-width="4" stroke-linecap="round" fill="none">
+          <line x1="35" y1="42" x2="35" y2="80"/>
+          <line x1="60" y1="42" x2="60" y2="80"/>
+          <line x1="85" y1="42" x2="85" y2="80"/>
+          <line x1="35" y1="61" x2="85" y2="61"/>
+        </g>
+        <text x="35" y="36" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">1</text>
+        <text x="60" y="36" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">3</text>
+        <text x="85" y="36" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">5</text>
+        <text x="35" y="97" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">2</text>
+        <text x="60" y="97" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">4</text>
+        <text x="85" y="97" font-size="13" fill="var(--red)" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">R</text>
+      </svg>
+      <div class="wordstack">
+        <div class="word-amine">AMINE</div>
+        <div class="word-rent">Rent a car</div>
+      </div>
+    </div>
+    <nav class="navlinks" id="navlinks">
+      <a href="#flotte">Notre flotte</a>
+      <a href="#chauffeur">Avec chauffeur</a>
+      <a href="#reservation-form">Réserver en ligne</a>
+      <a href="#reserver">Réserver</a>
+      <a href="#agences">Agences</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="navcall">
+      <a class="wa-btn" href="https://wa.me/21621289073" aria-label="Écrire sur WhatsApp au 21 28 90 73" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="#fff" stroke-width="1.6"/><path d="M8.5 9.5c.3 2 2.2 4.4 4.4 5.2.6.2 1.1.1 1.5-.2l.7-.6a.7.7 0 0 1 .8-.1l1.6.8c.3.2.5.6.4 1-.3 1.1-1.4 1.8-2.5 1.7-3-.3-6-3.3-6.3-6.3-.1-1.1.6-2.2 1.7-2.5.4-.1.8.1 1 .4l.8 1.6a.7.7 0 0 1-.1.8l-.6.7c-.2.2-.3.5-.2.8Z" fill="#fff"/></svg>
+      </a>
+      <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="lane"></div>
+  <svg class="hero-gear" width="420" height="420" viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="60" r="56" stroke-width="2"/>
+    <g stroke-width="3" stroke-linecap="round">
+      <line x1="35" y1="42" x2="35" y2="80"/>
+      <line x1="60" y1="42" x2="60" y2="80"/>
+      <line x1="85" y1="42" x2="85" y2="80"/>
+      <line x1="35" y1="61" x2="85" y2="61"/>
+    </g>
+  </svg>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Location de voitures — Bardo · Hay Ezzouhour · Yasmine Hammamet</div>
+      <h1>Prenez<br>la route,<br>on s'occupe<br>du reste.</h1>
+      <p class="lede">Amine Rent A Car loue des véhicules propres et entretenus, du modèle économique au haut de gamme, avec trois points de retrait entre Tunis et Hammamet. Réservation directe par téléphone, sans intermédiaire.</p>
+      <div class="hero-trust">
+        <span>🏆 Depuis 2009</span>
+        <span>🚗 +150 véhicules</span>
+        <span>📍 Tunis · Le Bardo · Hammamet</span>
+        <span>🛡️ Assistance 24/7</span>
+        <span>👨‍✈️ Avec chauffeur disponible</span>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-whatsapp" href="https://wa.me/21621289073" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="#fff" stroke-width="1.6"/><path d="M8.5 9.5c.3 2 2.2 4.4 4.4 5.2.6.2 1.1.1 1.5-.2l.7-.6a.7.7 0 0 1 .8-.1l1.6.8c.3.2.5.6.4 1-.3 1.1-1.4 1.8-2.5 1.7-3-.3-6-3.3-6.3-6.3-.1-1.1.6-2.2 1.7-2.5.4-.1.8.1 1 .4l.8 1.6a.7.7 0 0 1-.1.8l-.6.7c-.2.2-.3.5-.2.8Z" fill="#fff"/></svg>
+          Écrire sur WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#flotte">Voir la flotte &amp; les tarifs</a>
+      </div>
+      <p class="wa-note">Beaucoup d'appels en ce moment — un message WhatsApp reçoit une réponse plus rapide qu'un appel.</p>
+    </div>
+    <div class="plateboard">
+      <h3>Réservez en un message</h3>
+      <a class="btn btn-whatsapp" href="https://wa.me/21621289073" target="_blank" rel="noopener" style="width:100%; justify-content:center; margin-bottom:16px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="#fff" stroke-width="1.6"/><path d="M8.5 9.5c.3 2 2.2 4.4 4.4 5.2.6.2 1.1.1 1.5-.2l.7-.6a.7.7 0 0 1 .8-.1l1.6.8c.3.2.5.6.4 1-.3 1.1-1.4 1.8-2.5 1.7-3-.3-6-3.3-6.3-6.3-.1-1.1.6-2.2 1.7-2.5.4-.1.8.1 1 .4l.8 1.6a.7.7 0 0 1-.1.8l-.6.7c-.2.2-.3.5-.2.8Z" fill="#fff"/></svg>
+        WhatsApp — 21 28 90 73
+      </a>
+      <h3 style="margin-top:4px;">Ou par téléphone</h3>
+      <a class="plate" href="tel:+21671661540"><span class="lbl">Tél</span><span class="num">71 66 15 40</span></a>
+      <div class="sos-card">
+        <strong>🆘 SOS Assistance Routière 24/7</strong><br>
+        <a href="tel:+21629855924">29 855 924</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="item"><b>+150</b>véhicules en circulation à travers la Tunisie</div>
+    <div class="item"><b>24/7</b>assistance routière</div>
+    <div class="item"><b>3</b>agences — Tunis · Le Bardo · Hammamet</div>
+  </div>
+</div>
+
+
+<section id="apropos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">À propos</div>
+      <h2>Une agence de confiance depuis 2009</h2>
+      <p>Amine Rent A Car a été fondée en 2009 par M. Fathi Naili. Notre base se trouve à Tunis et nous proposons la location de véhicules avec plusieurs points de retrait.</p>
+    </div>
+    <div class="fleet-cats">
+      <div class="cat-card">
+        <div class="cat-head"><h3>Notre histoire</h3><span class="cat-note">Depuis 2009</span></div>
+        <p style="color:var(--text-soft);margin-top:12px;">Fondée par M. Fathi Naili, Amine Rent A Car s'appuie sur une expérience de longue date dans la location de voitures en Tunisie.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-head"><h3>Présence professionnelle</h3><span class="cat-note">Tunisie</span></div>
+        <p style="color:var(--text-soft);margin-top:12px;">Notre entreprise est référencée comme société de location de voitures sur Ween.tn et Go Africa Online.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-head"><h3>Nos points de retrait</h3><span class="cat-note">3 agences</span></div>
+        <p style="color:var(--text-soft);margin-top:12px;">Amine Rent A Car — base à Tunis, Cargo Rent A Car au Bardo et Génial Rent A Car à Yasmine Hammamet.</p>
+      </div>
+    </div>
+    <div class="hero-ctas" style="margin-top:24px;">
+      <a class="btn btn-ghost" href="https://ween.tn/fiche/amine-rent-a-car" target="_blank" rel="noopener">Fiche Ween.tn</a>
+      <a class="btn btn-ghost" href="https://www.goafricaonline.com/tn/780633-amine-rent-car-tunsie" target="_blank" rel="noopener">Fiche Go Africa Online</a>
+    </div>
+  </div>
+</section>
+
+
+<section id="demandes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Les plus demandés</div>
+      <h2>Véhicules les plus demandés</h2>
+      <p>Une sélection des modèles régulièrement recherchés par nos clients. Disponibilité à confirmer selon vos dates.</p>
+    </div>
+    <div class="featured-grid">
+      <div class="featured-card"><span class="hot">Très demandé</span><h3>Kia Picanto</h3><p>Citadine · pratique en ville</p></div>
+      <div class="featured-card"><span class="hot">Très demandé</span><h3>Clio 5</h3><p>Citadine · confort &amp; économie</p></div>
+      <div class="featured-card"><span class="hot">Très demandé</span><h3>Dacia Logan</h3><p>Berline · pratique &amp; spacieuse</p></div>
+      <div class="featured-card"><span class="hot">Très demandé</span><h3>Kia Stonic</h3><p>Crossover · confort</p></div>
+      <div class="featured-card"><span class="hot">Très demandé</span><h3>Kia Sportage</h3><p>SUV · famille &amp; long trajet</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="flotte">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Notre flotte</div>
+      <h2>Une voiture pour chaque trajet</h2>
+      <p>Cliquez sur un modèle disponible pour envoyer une demande de réservation. Premier arrivé, premier servi — l'état est mis à jour en direct.</p>
+    </div>
+
+    <div class="fleet-cats">
+
+      <div class="cat-card animated">
+        <div class="cat-head"><h3>Économique</h3><span class="cat-note">Ville &amp; petit budget</span></div>
+        <ul>
+          <li class="bookable" data-car="Kia Picanto" onclick="showCar('Kia Picanto', 'Auto ou manuelle · Climatisation', this)"><span class="veh-name">Kia Picanto<span class="veh-trans">Auto ou manuelle</span></span><span class="badge-dispo">Disponible</span></li>
+          <li class="bookable" data-car="Suzuki Swift" onclick="showCar('Suzuki Swift', 'Faible consommation', this)"><span class="veh-name">Suzuki Swift</span><span class="badge-dispo">Disponible</span></li>
+          <li class="bookable" data-car="Dacia Logan" onclick="showCar('Dacia Logan', 'Grand coffre', this)"><span class="veh-name">Dacia Logan</span><span class="badge-dispo">Disponible</span></li>
+          <li class="bookable" data-car="Seat Ibiza" onclick="showCar('Seat Ibiza', 'Style sportif', this)"><span class="veh-name">Seat Ibiza</span><span class="badge-dispo">Disponible</span></li>
+          <li class="bookable" data-car="Renault Clio 5" onclick="showCar('Renault Clio 5', 'Écran tactile · Régulateur de vitesse', this)"><span class="veh-name">Renault Clio 5</span><span class="badge-dispo">Disponible</span></li>
+        </ul>
+      </div>
+
+      <div class="cat-card animated">
+        <div class="cat-head"><h3>Confort</h3><span class="cat-note">Crossover &amp; famille</span></div>
+        <ul>
+          <li class="bookable" data-car="Dacia Stepway Manuelle" onclick="showCar('Dacia Stepway Manuelle', 'Boîte manuelle · Hauteur de caisse élevée', this)"><span class="veh-name">Dacia Stepway<span class="veh-trans">Manuelle</span></span><span class="badge-dispo">Disponible</span></li>
+          <li class="bookable" data-car="Dacia Stepway Automatique" onclick="showCar('Dacia Stepway Automatique', 'Boîte automatique', this)"><span class="veh-name">Dacia Stepway<span class="veh-trans">Automatique</span></span><span class="badge-dispo">Disponible</span></li>
+          <li class="bookable" data-car="Kia Stonic" onclick="showCar('Kia Stonic', 'Crossover compact · Boîte automatique', this)"><span class="veh-name">Kia Stonic</span><span class="badge-dispo">Disponible</span></li>
+        </ul>
+      </div>
+
+      <div class="cat-card animated">
+        <div class="cat-head"><h3>SUV &amp; Premium</h3><span class="cat-note">Grand confort</span></div>
+        <ul>
+          <li class="bookable" data-car="Mazda CX-7 4x4 6CV" onclick="showCar('Mazda CX-7 4x4 6CV', '4x4 · 6 CV · SUV puissant', this)"><span class="veh-name">Mazda CX-7<span class="veh-trans">4x4 · 6 CV</span></span><span class="badge-dispo">Disponible</span></li>
+          <li class="bookable" data-car="BYD" onclick="showCar('BYD', 'Électrique / Hybride · Technologie avancée', this)"><span class="veh-name">BYD</span><span class="badge-dispo">Disponible</span></li>
+          <li class="bookable" data-car="Range Rover Defender 2010" onclick="showCar('Range Rover Defender 2010', '4x4 Premium · 7 places · Modèle 2010', this)"><span class="veh-name">Range Rover Defender<span class="veh-trans">2010 · 7 places</span></span><span class="badge-dispo">Disponible</span></li>
+          <li class="bookable" data-car="Mercedes C200E Kit AMG" onclick="showCar('Mercedes C200E Kit AMG', 'Kit AMG · Boîte automatique', this)"><span class="veh-name">Mercedes C200E<span class="veh-trans">Kit AMG</span></span><span class="badge-dispo">Disponible</span></li>
+        </ul>
+      </div>
+
+      <div class="cat-card animated">
+        <div class="cat-head"><h3>Sur demande</h3><span class="cat-note">Actuellement indisponibles</span></div>
+        <ul>
+          <li class="is-off" data-car="Volkswagen Virtus" onclick="showCar('Volkswagen Virtus', 'Berline confortable', this)"><span class="veh-name">Volkswagen Virtus</span><span class="badge-indispo">Indisponible</span></li>
+          <li class="is-off" data-car="Hyundai i20" onclick="showCar('Hyundai i20', 'Caméra de recul · Grand confort', this)"><span class="veh-name">Hyundai i20</span><span class="badge-indispo">Indisponible</span></li>
+          <li class="is-off" data-car="Peugeot 208" onclick="showCar('Peugeot 208', 'Cockpit digital · Climatisation', this)"><span class="veh-name">Peugeot 208</span><span class="badge-indispo">Indisponible</span></li>
+          <li class="is-off" data-car="Volkswagen Polo 8" onclick="showCar('Volkswagen Polo 8', 'Écran tactile', this)"><span class="veh-name">Volkswagen Polo 8</span><span class="badge-indispo">Indisponible</span></li>
+          <li class="is-off" data-car="Peugeot 2008" onclick="showCar('Peugeot 2008', 'SUV compact · Design moderne', this)"><span class="veh-name">Peugeot 2008</span><span class="badge-indispo">Indisponible</span></li>
+          <li class="is-off" data-car="Chery Tiggo 7" onclick="showCar('Chery Tiggo 7', 'SUV familial · Grand espace', this)"><span class="veh-name">Chery Tiggo 7</span><span class="badge-indispo">Indisponible</span></li>
+          <li class="is-off" data-car="Haval" onclick="showCar('Haval', 'SUV équipé · Écran multimédia', this)"><span class="veh-name">Haval</span><span class="badge-indispo">Indisponible</span></li>
+          <li class="is-off" data-car="Kia Sportage" onclick="showCar('Kia Sportage', 'SUV luxe · Boîte automatique', this)"><span class="veh-name">Kia Sportage</span><span class="badge-indispo">Indisponible</span></li>
+          <li class="is-off" data-car="Volkswagen Golf 8" onclick="showCar('Volkswagen Golf 8', 'Cockpit futuriste · Boîte DSG', this)"><span class="veh-name">Volkswagen Golf 8</span><span class="badge-indispo">Indisponible</span></li>
+          <li class="is-off" data-car="Jaguar F-Pace" onclick="showCar('Jaguar F-Pace', 'SUV premium · Grand confort', this)"><span class="veh-name">Jaguar F-Pace</span><span class="badge-indispo">Indisponible</span></li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="fleet-note">Tarifs communiqués par téléphone ou WhatsApp selon le modèle, le contrat et la période de location. L'état Disponible / Indisponible ci-dessus reflète la réalité en direct.</p>
+  </div>
+</section>
+
+<!-- Modal de réservation en direct -->
+<div id="resvModal" class="resv-modal">
+  <div class="resv-content">
+    <span class="resv-close" onclick="closeResvModal()">&times;</span>
+    <div id="resvViewDetails">
+      <h3 id="modalCarName">Nom Voiture</h3>
+      <div id="modalCarStatus"></div>
+      <p id="modalCarDetails" style="color:var(--text-soft); font-size:14px; margin-bottom:6px;"></p>
+
+      <form id="resvForm" class="resv-form" onsubmit="submitReservation(event)">
+        <div>
+          <label for="rName">Nom complet</label>
+          <input type="text" id="rName" required placeholder="Votre nom">
+        </div>
+        <div class="resv-row">
+          <div>
+            <label for="rPhone">Téléphone</label>
+            <input type="tel" id="rPhone" required placeholder="+216 ..">
+          </div>
+          <div>
+            <label for="rEmail">Email (optionnel)</label>
+            <input type="email" id="rEmail" placeholder="vous@email.com">
+          </div>
+        </div>
+        <div class="resv-row">
+          <div>
+            <label for="rStart">Date de début</label>
+            <input type="date" id="rStart" required>
+          </div>
+          <div>
+            <label for="rEnd">Date de fin</label>
+            <input type="date" id="rEnd" required>
+          </div>
+        </div>
+        <button type="submit" class="resv-submit" id="resvSubmitBtn">Demander la réservation</button>
+        <div class="resv-error" id="resvErrorBox"></div>
+      </form>
+      <a class="btn btn-whatsapp" href="https://wa.me/21621289073" target="_blank" rel="noopener" style="width:100%; justify-content:center; margin-top:10px;">Ou contacter directement sur WhatsApp</a>
+    </div>
+
+    <div id="resvViewConfirm" style="display:none;">
+      <div class="resv-confirm">
+        <div class="resv-confirm-icon">✓</div>
+        <h3>Demande envoyée !</h3>
+        <div class="resv-timeline">
+          <p>⏱️ Nous vous répondons en <b>moins de 60 minutes</b> pour confirmer votre réservation.</p>
+          <p style="margin-top:8px;">📋 Une fois confirmée, vous avez <b>6 heures</b> pour finaliser les documents. Passé ce délai, la voiture redevient disponible pour les autres clients.</p>
+        </div>
+        <a class="btn btn-whatsapp" href="https://wa.me/21621289073" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Suivre ma demande sur WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Conditions & services</div>
+      <h2>Location simple et transparente</h2>
+      <p>Des conditions claires pour réserver votre véhicule en toute tranquillité.</p>
+    </div>
+    <div class="fleet-cats">
+      <div class="cat-card">
+        <h3>Inclus</h3>
+        <ul>
+          <li><span class="veh-name">Kilométrage</span><span class="price">Illimité</span></li>
+          <li><span class="veh-name">Carburant</span><span class="price">Essence</span></li>
+          <li><span class="veh-name">Places</span><span class="price">5 places</span></li>
+          <li><span class="veh-name">Defender</span><span class="price">7 places</span></li>
+        </ul>
+      </div>
+      <div class="cat-card">
+        <h3>Tarifs dégressifs</h3>
+        <ul>
+          <li><span class="veh-name">Plus de 3 jours</span><span class="price">−10 DT/j</span></li>
+          <li><span class="veh-name">Plus de 7 jours</span><span class="price">−20 DT/j</span></li>
+          <li><span class="veh-name">À partir d'un mois</span><span class="price">−30 DT/j</span></li>
+        </ul>
+      </div>
+      <div class="cat-card">
+        <h3>Services</h3>
+        <ul>
+          <li><span class="veh-name">Caution</span><span class="price">1 000 DT</span></li>
+          <li><span class="veh-name">Aéroport Tunis-Carthage</span><span class="price">Livraison</span></li>
+          <li><span class="veh-name">Transfert Tunis</span><span class="price">130 DT</span></li>
+          <li><span class="veh-name">TikTok</span><span class="price">@ Amine Rent A Car</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="chauffeur">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Service avec chauffeur</div>
+      <h2>Location avec chauffeur</h2>
+      <p>Besoin d'un véhicule avec conducteur ? Demandez un devis adapté à votre trajet et à votre durée.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card"><div class="service-icon">✈️</div><h3>Transferts Aéroport</h3><p>Prise en charge et transfert depuis ou vers l'aéroport Tunis-Carthage.</p></div>
+      <div class="service-card"><div class="service-icon">💍</div><h3>Mariages</h3><p>Véhicule avec chauffeur pour vos cérémonies et événements.</p></div>
+      <div class="service-card"><div class="service-icon">💼</div><h3>Déplacements professionnels</h3><p>Solutions de transport pour rendez-vous, missions et déplacements d'entreprise.</p></div>
+      <div class="service-card"><div class="service-icon">🇹🇳</div><h3>Tourisme en Tunisie</h3><p>Déplacements privés et circuits selon votre programme.</p></div>
+    </div>
+    <div class="hero-ctas" style="margin-top:24px;">
+      <a class="btn btn-primary" href="tel:+21629855924">Demander un devis chauffeur</a>
+      <a class="btn btn-whatsapp" href="https://wa.me/21621289073?text=Bonjour%2C%20je%20souhaite%20un%20service%20avec%20chauffeur." target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="reservation-form" class="reserver">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Réservation en ligne</div>
+      <h2>Demandez votre voiture</h2>
+      <p>Remplissez le formulaire. Votre demande est envoyée directement à Amine Rent A Car par e-mail.</p>
+    </div>
+
+    <form id="bookingForm"
+          action="https://formsubmit.co/amine.rentacar@gmail.com"
+          method="POST"
+          class="cat-card"
+          style="max-width:900px;">
+      <input type="hidden" name="_subject" value="Nouvelle demande de réservation — Amine Rent A Car">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_next" value="">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;">
+        <label>Nom et prénom
+          <input required name="Nom et prénom" type="text" autocomplete="name" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;">
+        </label>
+        <label>Téléphone / WhatsApp
+          <input required name="Téléphone" type="tel" autocomplete="tel" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;">
+        </label>
+        <label>E-mail
+          <input required name="E-mail" type="email" autocomplete="email" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;">
+        </label>
+        <label>Type de service
+          <select required name="Type de service" id="serviceType" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;background:#fff;">
+            <option value="">Choisir un service</option>
+            <option>Location sans chauffeur</option>
+            <option>Location avec chauffeur</option>
+            <option>Transfert aéroport avec chauffeur</option>
+          </select>
+        </label>
+        <label>Véhicule
+          <select required name="Véhicule" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;background:#fff;">
+            <option value="">Choisir un véhicule</option>
+            <option>Kia Picanto</option>
+            <option>Suzuki Swift</option>
+            <option>Dacia Logan</option>
+            <option>Seat Ibiza</option>
+            <option>Renault Clio 5</option>
+            <option>Dacia Stepway</option>
+            <option>Kia Stonic</option>
+            <option>Mazda CX-7 4x4 6CV</option>
+            <option>Kia Sportage</option>
+            <option>BYD</option>
+            <option>Range Rover Defender 2010</option>
+            <option>Mercedes C200E Kit AMG</option>
+            <option>Jaguar F-Pace</option>
+          </select>
+        </label>
+        <label>Date de départ
+          <input required name="Date de départ" type="date" id="startDate" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;">
+        </label>
+        <label>Date de retour
+          <input required name="Date de retour" type="date" id="endDate" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;">
+        </label>
+        <label>Agence de retrait
+          <select required name="Agence de retrait" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;background:#fff;">
+            <option value="">Choisir une agence</option>
+            <option>Amine Rent A Car — Base / Tunis</option>
+            <option>Cargo Rent A Car — Le Bardo</option>
+            <option>Génial Rent A Car — Yasmine Hammamet</option>
+          </select>
+        </label>
+        <label>Heure souhaitée
+          <input required name="Heure" type="time" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;">
+        </label>
+        <label style="grid-column:1/-1;">Message / demande particulière
+          <textarea name="Message" rows="4" placeholder="Livraison aéroport, siège enfant, question..." style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:8px;resize:vertical;"></textarea>
+        </label>
+      </div>
+
+      <div style="margin-top:20px;padding:16px;background:var(--sand);border-radius:10px;color:var(--text-soft);font-size:13.5px;">
+        <strong>Conditions :</strong> âge minimum 22 ans · permis depuis plus de 2 ans · documents : permis + carte d'identité · caution : 1 000 DT · kilométrage illimité.
+      </div>
+
+      <button class="btn btn-primary" type="submit" style="margin-top:20px;border:0;cursor:pointer;">Envoyer ma demande</button>
+      <p id="bookingStatus" style="margin-top:12px;color:var(--text-soft);font-size:13px;"></p>
+    </form>
+  </div>
+</section>
+
+<section id="reserver" class="reserver">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Réservation</div>
+      <h2>Réservez en 3 étapes, sur WhatsApp</h2>
+      <p>Pas besoin d'appeler : la réservation se fait directement par message, en trois étapes.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Choix du véhicule</h3>
+        <p>Sélectionnez le modèle qui vous convient dans la flotte ci-dessus, ainsi que vos dates de location.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Envoi des documents</h3>
+        <p>Envoyez une photo de votre carte d'identité et de votre permis de conduire.</p>
+        <div class="conditions">Permis de conduire de plus de 2 ans · âge minimum 22 ans</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Avance de confirmation</h3>
+        <p>Envoyez une avance d'au moins 20% du montant total via Wafacash, MoneyGram ou un service équivalent pour confirmer la réservation.</p>
+      </div>
+    </div>
+
+    <a class="btn btn-whatsapp" href="https://wa.me/21621289073" target="_blank" rel="noopener" style="margin-top:34px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="#fff" stroke-width="1.6"/><path d="M8.5 9.5c.3 2 2.2 4.4 4.4 5.2.6.2 1.1.1 1.5-.2l.7-.6a.7.7 0 0 1 .8-.1l1.6.8c.3.2.5.6.4 1-.3 1.1-1.4 1.8-2.5 1.7-3-.3-6-3.3-6.3-6.3-.1-1.1.6-2.2 1.7-2.5.4-.1.8.1 1 .4l.8 1.6a.7.7 0 0 1-.1.8l-.6.7c-.2.2-.3.5-.2.8Z" fill="#fff"/></svg>
+      Démarrer la réservation sur WhatsApp
+    </a>
+  </div>
+</section>
+
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Paiement</div>
+      <h2>Plusieurs moyens de paiement</h2>
+      <p>Les moyens disponibles dépendent des conditions de votre réservation. Demandez les détails avant le paiement.</p>
+    </div>
+    <div class="payment-row">
+      <span class="payment-badge">Western Union</span>
+      <span class="payment-badge">MoneyGram</span>
+      <span class="payment-badge">Wafacash</span>
+      <span class="payment-badge">Virement bancaire</span>
+      <span class="payment-badge">Espèces</span>
+    </div>
+  </div>
+</section>
+
+<section id="agences" class="agences">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Nos agences</div>
+      <h2>Trois points de retrait, un seul numéro</h2>
+      <p>Retirez votre véhicule là où c'est pratique pour vous. Le siège au Hay Ezzouhour gère les réservations et les contrats pour les trois agences.</p>
+    </div>
+
+    <div class="route">
+      <div class="stop">
+        <div class="dot"></div>
+        <div class="kicker">Agence 01 · Cargo Rent A Car</div>
+        <h3>Le Bardo</h3>
+        <p>3, rue Mongi Slim<br>2000 Le Bardo, Tunisie</p>
+        <div class="map-buttons">
+          <a href="https://www.google.com/maps/search/?api=1&query=3%2C%20rue%20Mongi%20Slim%2C%202000%20Le%20Bardo%2C%20Tunisie" target="_blank" rel="noopener">📍 Google Maps</a>
+        </div>
+      </div>
+      <div class="stop siege">
+        <div class="dot"></div>
+        <div class="kicker">Siège social</div>
+        <h3>Hay Ezzouhour</h3>
+        <p>Q4RF+VR3 — Cité des Sousofficiers, Gouvernorat de Tunis, Tunis, Tunisie — c'est le local du siège : réservations, contrats et retrait de véhicule au même endroit.</p>
+        <div class="map-buttons">
+          <a href="https://www.google.com/maps/search/?api=1&query=Q4RF%2BVR3%2C%20Cite%20des%20Sousofficiers%2C%20Tunis%2C%20Tunisie" target="_blank" rel="noopener">📍 Google Maps</a>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="dot"></div>
+        <div class="kicker">Agence 03 · Génial Rent A Car</div>
+        <h3>Yasmine Hammamet</h3>
+        <p>Hammamet Sud — Yasmine Hammamet. Pratique pour récupérer votre véhicule à l'arrivée ou pendant votre séjour.</p>
+        <div class="map-buttons">
+          <a href="https://www.google.com/maps/search/?api=1&query=Yasmine%20Hammamet%2C%20Hammamet%2C%20Tunisie" target="_blank" rel="noopener">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Présence en ligne</div>
+      <h2>Retrouvez-nous aussi en ligne</h2>
+      <p>Amine Rent A Car est référencée sur des annuaires professionnels tunisiens.</p>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn btn-ghost" href="https://ween.tn/fiche/amine-rent-a-car" target="_blank" rel="noopener">Voir notre fiche Ween.tn</a>
+      <a class="btn btn-ghost" href="https://www.goafricaonline.com/tn/780633-amine-rent-car-tunsie" target="_blank" rel="noopener">Voir notre fiche Go Africa Online</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions fréquentes</h2>
+      <p>Les informations essentielles avant votre réservation.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step-card">
+        <h3>Quelles sont les conditions ?</h3>
+        <p>Le conducteur doit avoir au minimum 22 ans et un permis de conduire depuis plus de 2 ans.</p>
+      </div>
+      <div class="step-card">
+        <h3>Quels documents faut-il ?</h3>
+        <p>Une carte d'identité et un permis de conduire sont nécessaires.</p>
+      </div>
+      <div class="step-card">
+        <h3>Quelle est la caution ?</h3>
+        <p>La caution est fixée à 1 000 DT.</p>
+      </div>
+      <div class="step-card">
+        <h3>Le kilométrage est-il limité ?</h3>
+        <p>Non. Le kilométrage est illimité.</p>
+      </div>
+      <div class="step-card">
+        <h3>Comment fonctionne l'annulation ?</h3>
+        <p>Plus de 24 h avant le début de la location : l'avance est remboursée intégralement. Moins de 24 h : 5 % de l'avance est retenu.</p>
+      </div>
+      <div class="step-card">
+        <h3>Proposez-vous la livraison ?</h3>
+        <p>Oui, une livraison à l'aéroport Tunis-Carthage est disponible. Un service de transfert dans tout Tunis est également proposé à 130 DT.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Contact</div>
+      <h2>Écrivez, réservez</h2>
+      <p>Une question sur un modèle ou une disponibilité ? Le plus simple est d'écrire sur WhatsApp — l'équipe répond aussi par téléphone ou e-mail.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="info-list">
+
+        <div class="info-row">
+          <div class="ic" style="background:#e4f5ea; color:#1f7a44;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="#1f7a44" stroke-width="1.6"/></svg>
+          </div>
+          <div>
+            <h4>WhatsApp — réponse la plus rapide</h4>
+            <p style="margin-top:2px;">Beaucoup d'appels reçus en ce moment : un message obtient une réponse plus vite qu'un appel.</p>
+            <div class="phone-plates">
+              <a class="plate" href="https://wa.me/21621289073" target="_blank" rel="noopener" style="color:#1f7a44;"><span class="lbl">WhatsApp</span><span class="num">21 28 90 73</span></a>
+              <a class="plate" href="https://wa.me/21622192727" target="_blank" rel="noopener" style="color:#1f7a44;"><span class="lbl">WhatsApp</span><span class="num">22 19 27 27</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1.1.5 1.1 1.1v3.4c0 .6-.5 1.1-1.1 1.1C10.6 21.2 2.8 13.4 2.8 3.1 2.8 2.5 3.3 2 3.9 2h3.4c.6 0 1.1.5 1.1 1.1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8Z" stroke="#8f1622" stroke-width="1.6"/></svg>
+          </div>
+          <div>
+            <h4>Téléphone (si besoin d'appeler)</h4>
+            <div class="phone-plates">
+              <a class="plate" href="tel:+21671661540"><span class="lbl">Tél</span><span class="num">71 66 15 40</span></a>
+              <a class="plate" href="tel:+21621289073"><span class="lbl">GSM</span><span class="num">21 28 90 73</span></a>
+              <a class="plate" href="tel:+21622192727"><span class="lbl">WhatsApp</span><span class="num">22 19 27 27</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3V6Z" stroke="#8f1622" stroke-width="1.6"/><path d="M3 6l9 7 9-7" stroke="#8f1622" stroke-width="1.6"/></svg>
+          </div>
+          <div>
+            <h4>E-mail</h4>
+            <a href="mailto:amine.rentacar@gmail.com">amine.rentacar@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.6 7-11.5A7 7 0 0 0 5 9.5C5 14.4 12 21 12 21Z" stroke="#8f1622" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.4" stroke="#8f1622" stroke-width="1.6"/></svg>
+          </div>
+          <div>
+            <h4>Siège social — Hay Ezzouhour</h4>
+            <p>Q4RF+VR3 — Cité des Sousofficiers, Gouvernorat de Tunis, Tunis, Tunisie. Local du siège et agence de retrait au même endroit.</p>
+            <span class="gerant-tag">Fathi Naili — Fondateur · 2009</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mapcard">
+        <iframe loading="lazy" title="Localisation du siège Amine Rent A Car" src="https://maps.google.com/maps?q=Q4RF%2BVR3%2C%20Cite%20Des%20Sousofficiers%2C%20Tunis%2C%20Tunisie&t=&z=17&ie=UTF8&iwloc=&output=embed"></iframe>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Cit%C3%A9%20Ezzouhour%204%2C%20Tunis" target="_blank" rel="noopener">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>© <span id="year"></span> Amine Rent A Car — Bardo · Hay Ezzouhour · Yasmine Hammamet</div>
+    <a class="btn btn-whatsapp" href="https://wa.me/21621289073" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="#fff" stroke-width="1.6"/><path d="M8.5 9.5c.3 2 2.2 4.4 4.4 5.2.6.2 1.1.1 1.5-.2l.7-.6a.7.7 0 0 1 .8-.1l1.6.8c.3.2.5.6.4 1-.3 1.1-1.4 1.8-2.5 1.7-3-.3-6-3.3-6.3-6.3-.1-1.1.6-2.2 1.7-2.5.4-.1.8.1 1 .4l.8 1.6a.7.7 0 0 1-.1.8l-.6.7c-.2.2-.3.5-.2.8Z" fill="#fff"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const burger = document.getElementById('burgerBtn');
+  const links = document.getElementById('navlinks');
+  burger.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  const startDate = document.getElementById('startDate');
+  const endDate = document.getElementById('endDate');
+  const bookingForm = document.getElementById('bookingForm');
+  const bookingStatus = document.getElementById('bookingStatus');
+
+  const today = new Date().toISOString().split('T')[0];
+  if (startDate) startDate.min = today;
+  if (endDate) endDate.min = today;
+
+  if (startDate && endDate) {
+    startDate.addEventListener('change', () => {
+      endDate.min = startDate.value || today;
+      if (endDate.value && endDate.value < endDate.min) endDate.value = '';
+    });
+  }
+
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', (e) => {
+      if (startDate.value && endDate.value && endDate.value < startDate.value) {
+        e.preventDefault();
+        bookingStatus.textContent = 'La date de retour doit être après la date de départ.';
+        return;
+      }
+      bookingStatus.textContent = 'Envoi de votre demande…';
+    });
+  }
+
+  /* ==========================================================
+     RÉSERVATION EN DIRECT — carte cliquable "Notre flotte"
+     Remplace SCRIPT_URL par ton URL Google Apps Script Web App
+     (voir GUIDE-CONFIGURATION.md).
+  ========================================================== */
+  const SCRIPT_URL = "REMPLACE_PAR_TON_URL_APPS_SCRIPT";
+  let currentLi = null;
+
+  function showCar(name, details, liEl) {
+    currentLi = liEl;
+    const isOff = liEl.classList.contains('is-off');
+
+    document.getElementById('modalCarName').textContent = name;
+    document.getElementById('modalCarDetails').textContent = details;
+
+    const statusEl = document.getElementById('modalCarStatus');
+    statusEl.textContent = isOff ? 'Indisponible actuellement' : 'Disponible maintenant';
+    statusEl.style.color = isOff ? '#9aa0a6' : '#2FAE60';
+
+    document.getElementById('resvViewDetails').style.display = 'block';
+    document.getElementById('resvViewConfirm').style.display = 'none';
+    document.getElementById('resvErrorBox').style.display = 'none';
+    document.getElementById('resvForm').reset();
+
+    const form = document.getElementById('resvForm');
+    const submitBtn = document.getElementById('resvSubmitBtn');
+    if (isOff) { form.style.display = 'none'; submitBtn.disabled = true; }
+    else { form.style.display = 'grid'; submitBtn.disabled = false; }
+
+    document.getElementById('resvModal').style.display = 'flex';
+  }
+
+  function closeResvModal() {
+    document.getElementById('resvModal').style.display = 'none';
+  }
+
+  window.addEventListener('click', (event) => {
+    const modal = document.getElementById('resvModal');
+    if (event.target === modal) modal.style.display = 'none';
+  });
+
+  async function submitReservation(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('resvSubmitBtn');
+    const errorBox = document.getElementById('resvErrorBox');
+    errorBox.style.display = 'none';
+
+    const payload = {
+      action: 'reserve',
+      car: document.getElementById('modalCarName').textContent,
+      name: document.getElementById('rName').value,
+      phone: document.getElementById('rPhone').value,
+      email: document.getElementById('rEmail').value,
+      start: document.getElementById('rStart').value,
+      end: document.getElementById('rEnd').value
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="resv-spinner"></span> Envoi en cours…';
+
+    try {
+      const res = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        document.getElementById('resvViewDetails').style.display = 'none';
+        document.getElementById('resvViewConfirm').style.display = 'block';
+        markCarUnavailable(currentLi);
+      } else if (data.reason === 'unavailable') {
+        markCarUnavailable(currentLi);
+        errorBox.textContent = "Désolé, cette voiture vient d'être réservée par quelqu'un d'autre. Choisissez un autre véhicule disponible.";
+        errorBox.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Demander la réservation';
+      } else {
+        throw new Error(data.error || 'Erreur inconnue');
+      }
+    } catch (err) {
+      errorBox.textContent = "Impossible d'envoyer la demande pour le moment. Réessayez ou contactez-nous sur WhatsApp.";
+      errorBox.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Demander la réservation';
+    }
+  }
+
+  function markCarUnavailable(liEl) {
+    if (!liEl) return;
+    liEl.classList.add('is-off');
+    liEl.classList.remove('bookable');
+    const badge = liEl.querySelector('.badge-dispo');
+    if (badge) { badge.classList.remove('badge-dispo'); badge.classList.add('badge-indispo'); badge.textContent = 'Indisponible'; }
+  }
+
+  function markCarAvailable(liEl) {
+    if (!liEl) return;
+    liEl.classList.remove('is-off');
+    liEl.classList.add('bookable');
+    const badge = liEl.querySelector('.badge-indispo');
+    if (badge) { badge.classList.remove('badge-indispo'); badge.classList.add('badge-dispo'); badge.textContent = 'Disponible'; }
+  }
+
+  async function syncAvailability() {
+    if (SCRIPT_URL.includes('REMPLACE_PAR_TON_URL')) return;
+    try {
+      const res = await fetch(SCRIPT_URL + '?action=list');
+      const data = await res.json();
+      if (!data || !data.cars) return;
+      document.querySelectorAll('#flotte li[data-car]').forEach(li => {
+        const status = data.cars[li.getAttribute('data-car')];
+        if (status === 'Indisponible') markCarUnavailable(li);
+        if (status === 'Disponible') markCarAvailable(li);
+      });
+    } catch (err) { /* silencieux : on garde l'état affiché en local */ }
+  }
+
+  syncAvailability();
+  setInterval(syncAvailability, 60000);
+</script>
+
+</body>
+</html>
