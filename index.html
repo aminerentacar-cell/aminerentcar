@@ -3,558 +3,662 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amine Rent A Car | Location de voitures à Tunis, Le Bardo &amp; Yasmine Hammamet</title>
-  <meta name="description" content="Location de voitures en Tunisie à Tunis, Le Bardo et Yasmine Hammamet. Véhicules récents, SUV, voitures VIP avec chauffeur, meilleurs prix et assistance 24/7. Réservation rapide.">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Pacifico&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <title>Amine Rent a Car - Réservation en ligne</title>
+
+  <!-- FontAwesome Icons & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Variables globales & Reset */
     :root {
-      --ink: #1a1a1a;
-      --paper: #FBF9F6;
-      --sand: #F1E9DC;
-      --red: #C1272D;
-      --red-dark: #8f1622;
-      --gold: #D4AF37;
-      --slate: #4b4f52;
-      --text: #232323;
-      --text-soft: #5c5f61;
-      --line: rgba(26,26,26,0.13);
-      --radius: 10px;
+      --primary-color: #d62839;
+      --primary-dark: #a91d2b;
+      --secondary-color: #14213d;
+      --accent-color: #2a9d8f;
+      --gold-accent: #e9b44c;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-color: #2b2d42;
+      --muted-text: #6c757d;
+      --border-color: #e2e8f0;
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    /* Gear-shift badge logo */
-    .gearbadge {
-      width: 46px;
-      height: 46px;
-      flex: none;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
     body {
-      background: var(--paper);
-      color: var(--text);
-      font-family: 'Work Sans', sans-serif;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+      background: linear-gradient(135deg, #0f172a 0%, #14213d 45%, #1e293b 100%);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
     }
-    h1, h2, h3, h4, .display {
-      font-family: 'Barlow Condensed', sans-serif;
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatEffect {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .booking-container {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 850px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+      padding: 40px;
+      animation: fadeInUp 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
+      border-top: 5px solid var(--primary-color);
+    }
+
+    .booking-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .booking-header h2 {
+      color: var(--secondary-color);
+      font-weight: 700;
+      font-size: 2.2rem;
       text-transform: uppercase;
-      letter-spacing: 0.01em;
-      font-weight: 800;
-      line-height: 0.98;
-    }
-    a { color: inherit; text-decoration: none; }
-    img, svg { display: block; max-width: 100%; }
-    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
-
-    /* Brand mark */
-    .brandmark { display: flex; align-items: center; gap: 12px; position: relative; padding-left: 14px; }
-    .brandmark::before { content: ""; position: absolute; left: 0; top: 2px; bottom: 2px; width: 4px; background: var(--red); border-radius: 2px; }
-    .word-amine { font-family: 'Barlow Condensed'; font-weight: 900; font-size: 23px; letter-spacing: 0.02em; color: var(--ink); }
-    .word-rent { font-family: 'Pacifico', cursive; font-size: 14px; color: var(--red); margin-top: 2px; text-transform: none; }
-
-    /* Plate badge */
-    .plate {
-      display: inline-flex; align-items: center; gap: 9px; background: #fff; border: 2.5px solid var(--ink);
-      border-radius: 7px; padding: 9px 15px; position: relative; box-shadow: 0 3px 0 var(--ink);
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; color: var(--red); letter-spacing: 0.03em;
-    }
-    .plate .num { font-size: 18px; }
-    .plate .lbl { font-size: 10.5px; color: var(--slate); font-family: 'Work Sans'; font-weight: 700; text-transform: uppercase; }
-
-    /* Buttons */
-    .btn { font-weight: 700; font-size: 15px; padding: 12px 20px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all .15s ease; cursor: pointer; border: none; }
-    .btn-primary { background: var(--red); color: #fff; }
-    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
-    .btn-ghost { border: 1.5px solid rgba(251,247,239,0.4); color: var(--paper); background: transparent; }
-    .btn-ghost:hover { border-color: var(--paper); }
-    .btn-whatsapp { background: #2FAE60; color: #fff; }
-    .btn-whatsapp:hover { background: #248549; }
-    .btn-resv { background: var(--ink); color: #fff; font-size: 13px; padding: 8px 14px; border-radius: 6px; }
-    .btn-resv:hover { background: var(--red); }
-
-    /* Floating WhatsApp */
-    .whatsapp-float {
-      position: fixed; bottom: 24px; right: 24px; background-color: #25d366; color: white;
-      border-radius: 50px; padding: 12px 20px; font-weight: bold; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-      z-index: 1000; transition: transform 0.2s ease;
-    }
-    .whatsapp-float:hover { transform: scale(1.08); }
-
-    /* Header */
-    header { position: sticky; top: 0; z-index: 50; background: rgba(251,249,246,0.95); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-    .navlinks { display: flex; align-items: center; gap: 26px; font-weight: 600; font-size: 15px; }
-    .navlinks a:hover { color: var(--red); }
-
-    /* Hero */
-    .hero { background: linear-gradient(180deg, var(--ink) 0%, #262626 100%); color: var(--paper); padding: 70px 0; }
-    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
-    .hero h1 { font-size: clamp(40px, 5vw, 68px); }
-    .hero p.lede { font-size: 16px; color: #cfd3d6; margin-top: 16px; max-width: 48ch; }
-    .plateboard { background: #232323; border: 1px solid rgba(251,247,239,0.12); border-radius: 16px; padding: 24px; }
-
-    /* Sections */
-    section { padding: 70px 0; }
-    .sec-head { max-width: 640px; margin-bottom: 40px; }
-    .sec-head .eyebrow { color: var(--red); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; }
-    .sec-head h2 { font-size: clamp(32px,4vw,44px); color: var(--ink); margin-top: 4px; }
-
-    /* Badges Status */
-    .badge-dispo {
-      font-weight: 700; font-size: 11px; color: #fff; border-radius: 20px; padding: 4px 10px;
-      text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px; background: #2FAE60;
-    }
-    .badge-off {
-      font-weight: 700; font-size: 11px; color: #fff; border-radius: 20px; padding: 4px 10px;
-      text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px; background: #C1272D;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
     }
 
-    /* Fleet Cards */
-    .fleet-cats { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
-    .cat-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-    .cat-card h3 { font-size: 22px; color: var(--ink); margin-bottom: 12px; }
-    .cat-card ul { list-style: none; }
-    .cat-card li { display: flex; flex-direction: column; gap: 8px; padding: 14px 0; border-top: 1px solid var(--line); }
-    .cat-card li:first-child { border-top: none; }
-    .veh-info { display: flex; justify-content: space-between; align-items: flex-start; }
-    .veh-name { font-size: 16px; font-weight: 700; color: var(--text); }
-    .veh-trans { display: block; font-size: 12px; font-weight: 500; color: var(--text-soft); }
-    .veh-img { width: 100%; height: 130px; object-fit: cover; border-radius: 6px; background: #f0f0f0; margin-top: 4px; }
-    .veh-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+    .booking-header h2 i {
+      color: var(--primary-color);
+      margin-right: 8px;
+    }
 
-    /* VIP Section */
-    .vip-section { background: linear-gradient(135deg, #111 0%, #1f1f1f 100%); color: var(--paper); border-radius: 16px; padding: 36px; margin-top: 40px; border: 1px solid rgba(212,175,55,0.3); }
-    .vip-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px; }
-    .vip-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; }
-    .vip-card h4 { font-size: 22px; color: #fff; }
-    .vip-card .vip-tag { color: var(--gold); font-size: 12px; font-weight: 700; text-transform: uppercase; margin-top: 6px; display: block; }
+    .booking-header h2::after {
+      content: '';
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--gold-accent));
+      position: absolute;
+      bottom: -8px;
+      left: 20%;
+      border-radius: 2px;
+    }
 
-    /* Step Process Box */
-    .steps-box { background: var(--sand); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 20px; }
-    .steps-title { font-weight: 800; font-size: 14px; text-transform: uppercase; color: var(--red-dark); margin-bottom: 10px; }
-    .steps-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 12px; }
-    .step-item { background: #fff; padding: 10px; border-radius: 8px; border: 1px solid var(--line); }
-    .step-item b { color: var(--ink); display: block; margin-bottom: 2px; }
+    .booking-header p {
+      color: var(--muted-text);
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
 
-    /* Modal */
-    .resv-modal { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(26,26,26,.75); align-items: center; justify-content: center; backdrop-filter: blur(4px); }
-    .resv-content { background: #fff; padding: 28px; border-radius: 16px; max-width: 540px; width: 92%; position: relative; max-height: 92vh; overflow-y: auto; }
-    .resv-close { position: absolute; right: 16px; top: 12px; font-size: 24px; cursor: pointer; font-weight: bold; }
-    .resv-form { display: grid; gap: 12px; margin-top: 12px; }
-    .resv-form label { font-size: 12px; font-weight: 700; color: var(--ink); }
-    .resv-form input, .resv-form select { width: 100%; padding: 10px; border: 1.5px solid var(--line); border-radius: 8px; font-size: 14px; }
-    .resv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
 
-    /* Payment Section */
-    .payment-sec { background: #fff; border-top: 1px solid var(--line); padding: 50px 0; }
-    .bank-card { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 12px; }
-    .bank-card strong { color: var(--ink); font-size: 15px; }
-    .rib-code { font-family: monospace; font-size: 14px; background: #fff; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--line); display: inline-block; margin-top: 4px; font-weight: bold; color: var(--red-dark); }
-    .payment-logos { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 16px; }
-    .pay-badge { background: var(--sand); padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 13px; color: var(--ink); border: 1px solid var(--line); }
+    @media (max-width: 768px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .booking-container { padding: 25px; }
+    }
 
-    @media (max-width: 900px) {
-      .hero-grid, .fleet-cats, .vip-grid, .steps-list { grid-template-columns: 1fr; }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    @media (max-width: 768px) {
+      .form-group.full-width { grid-column: span 1; }
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: var(--secondary-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper i.icon-prefix {
+      position: absolute;
+      left: 14px;
+      color: var(--accent-color);
+      font-size: 1.1rem;
+      transition: var(--transition);
+      pointer-events: none;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px 12px 42px;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      outline: none;
+      background: #f8fafc;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-color);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(214, 40, 57, 0.15);
+    }
+
+    .form-control:focus + i.icon-prefix {
+      color: var(--primary-color);
+    }
+
+    .form-control.input-error {
+      border-color: var(--primary-color);
+      animation: shake 0.4s ease;
+    }
+
+    /* Honeypot anti-bot (invisible pour les humains) */
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      opacity: 0;
+      pointer-events: none;
+      tab-index: -1;
+    }
+
+    /* Phone Input Flag Styling */
+    .flag-badge {
+      position: absolute;
+      right: 12px;
+      font-size: 1.4rem;
+      pointer-events: none;
+      transition: var(--transition);
+      animation: floatEffect 2s infinite;
+    }
+
+    /* Compteur de jours */
+    .duration-badge {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      display: none;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .duration-badge.show {
+      display: flex;
+    }
+
+    .field-hint {
+      font-size: 0.78rem;
+      color: var(--primary-color);
+      margin-top: 6px;
+      display: none;
+    }
+
+    .field-hint.show {
+      display: block;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(214, 40, 57, 0.35);
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Custom Notification Alert */
+    .alert-box {
+      display: none;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-weight: 500;
+      text-align: center;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .alert-success {
+      background-color: #d1e7dd;
+      color: #0f5132;
+      border: 1px solid #badbcc;
+    }
+
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #842029;
+      border: 1px solid #f5c2c7;
     }
   </style>
 </head>
 <body>
 
-<a href="https://wa.me/21621289073" class="whatsapp-float" target="_blank" rel="noopener">💬 WhatsApp</a>
-
-<header>
-  <div class="wrap nav">
-    <div class="brandmark">
-      <svg class="gearbadge" viewBox="0 0 120 120" aria-hidden="true">
-        <circle cx="60" cy="60" r="56" fill="var(--ink)"/>
-        <g stroke="var(--paper)" stroke-width="4" stroke-linecap="round" fill="none">
-          <line x1="35" y1="42" x2="35" y2="80"/>
-          <line x1="60" y1="42" x2="60" y2="80"/>
-          <line x1="85" y1="42" x2="85" y2="80"/>
-          <line x1="35" y1="61" x2="85" y2="61"/>
-        </g>
-        <text x="35" y="36" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">1</text>
-        <text x="60" y="36" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">3</text>
-        <text x="85" y="36" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">5</text>
-        <text x="35" y="97" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">2</text>
-        <text x="60" y="97" font-size="13" fill="#FBF9F6" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">4</text>
-        <text x="85" y="97" font-size="13" fill="var(--red)" text-anchor="middle" font-family="Barlow Condensed" font-weight="700">R</text>
-      </svg>
-      <div class="wordstack">
-        <div class="word-amine">AMINE</div>
-        <div class="word-rent">Rent a car</div>
-      </div>
-    </div>
-    <nav class="navlinks">
-      <a href="#flotte">Flotte</a>
-      <a href="#chauffeur">Avec Chauffeur</a>
-      <a href="#paiement">Modes de Paiement</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="btn btn-primary" href="#flotte">Réserver</a>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow" style="color:var(--red);">Location de véhicules en Tunisie</div>
-      <h1>Réservez votre voiture en 3 étapes simples.</h1>
-      <p class="lede">AMINE RENT A CAR : Service rapide, voitures propres et livraison disponible à l'Aéroport Tunis-Carthage. Envoyez votre demande, nous vous rappelons sous 60 minutes max.</p>
-      <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
-        <a class="btn btn-primary" href="#flotte">Voir les Voitures Disponibles</a>
-        <a class="btn btn-whatsapp" href="https://wa.me/21621289073" target="_blank" rel="noopener">WhatsApp Direct</a>
-      </div>
-    </div>
-    <div class="plateboard">
-      <h3 style="color:#fff; margin-bottom:12px;">Besoin d'aide immédiate ?</h3>
-      <p style="color:#aaa; font-size:14px; margin-bottom:16px;">Nos conseillers sont disponibles 24/7 par téléphone ou WhatsApp.</p>
-      <a class="plate" href="tel:+21621289073" style="width:100%; justify-content:center;"><span class="lbl">Tél :</span><span class="num">+216 21 289 073</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- Section Processus en 3 Étapes -->
-<section style="padding:40px 0; background:var(--sand);">
-  <div class="wrap">
-    <div class="steps-box" style="margin-bottom:0;">
-      <div class="steps-title">📍 Comment louer votre voiture chez AMINE RENT A CAR (3 Étapes) :</div>
-      <div class="steps-list">
-        <div class="step-item">
-          <b>1. Demande en ligne</b>
-          Choisissez votre véhicule et remplissez le formulaire de réservation.
-        </div>
-        <div class="step-item">
-          <b>2. Confirmation (&lt; 60 min)</b>
-          Notre équipe vous appelle par téléphone sous 60 min max pour valider tous les détails.
-        </div>
-        <div class="step-item">
-          <b>3. Avance 20% &amp; Livraison</b>
-          Versez 20% d'avance pour bloquer votre véhicule. Votre voiture vous attend à l'Aéroport ou en Agence !
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="flotte">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Notre Catalogue</div>
-      <h2>Flotte Automobile</h2>
-      <p>Sélectionnez votre véhicule pour faire une demande de réservation directe.</p>
+  <div class="booking-container">
+    <div class="booking-header">
+      <h2><i class="fa-solid fa-car"></i> Amine Rent a Car</h2>
+      <p>Réservez votre véhicule en toute sécurité en quelques clics</p>
     </div>
 
-    <div class="fleet-cats">
-      <!-- Catégorie Citadines -->
-      <div class="cat-card">
-        <h3>Citadines &amp; Économiques</h3>
-        <ul>
-          <li>
-            <div class="veh-info">
-              <div><span class="veh-name">Seat Ibiza</span><span class="veh-trans">Manuelle / Essence</span></div>
-              <span class="badge-dispo">Disponible</span>
-            </div>
-            <img class="veh-img" src="images/cars/seat-ibiza.jpg" alt="Seat Ibiza" onerror="this.src='https://via.placeholder.com/300x130?text=Seat+Ibiza'">
-            <div class="veh-actions">
-              <button class="btn btn-resv" onclick="openModal('Seat Ibiza')">Réserver ce véhicule</button>
-            </div>
-          </li>
-          <li>
-            <div class="veh-info">
-              <div><span class="veh-name">Hyundai i20</span><span class="veh-trans">Manuelle</span></div>
-              <span class="badge-dispo">Disponible</span>
-            </div>
-            <img class="veh-img" src="images/cars/hyundai-i20.jpg" alt="Hyundai i20" onerror="this.src='https://via.placeholder.com/300x130?text=Hyundai+i20'">
-            <div class="veh-actions">
-              <button class="btn btn-resv" onclick="openModal('Hyundai i20')">Réserver ce véhicule</button>
-            </div>
-          </li>
-          <li>
-            <div class="veh-info">
-              <div><span class="veh-name">Škoda Fabia</span><span class="veh-trans">Manuelle</span></div>
-              <span class="badge-off">Pas Disponible</span>
-            </div>
-            <img class="veh-img" src="images/cars/skoda-fabia.jpg" alt="Skoda Fabia" onerror="this.src='https://via.placeholder.com/300x130?text=Skoda+Fabia'">
-            <div class="veh-actions">
-              <button class="btn btn-resv" style="opacity:0.6;" onclick="openModal('Škoda Fabia')">Demande d'attente</button>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <form id="reservationForm" autocomplete="off">
+      <div class="form-grid">
 
-      <!-- Catégorie Berlines & Crossovers -->
-      <div class="cat-card">
-        <h3>Confort &amp; Crossovers</h3>
-        <ul>
-          <li>
-            <div class="veh-info">
-              <div><span class="veh-name">Dacia Stepway</span><span class="veh-trans">Manuelle</span></div>
-              <span class="badge-dispo">Disponible</span>
-            </div>
-            <img class="veh-img" src="images/cars/dacia-stepway.jpg" alt="Dacia Stepway" onerror="this.src='https://via.placeholder.com/300x130?text=Dacia+Stepway'">
-            <div class="veh-actions">
-              <button class="btn btn-resv" onclick="openModal('Dacia Stepway')">Réserver ce véhicule</button>
-            </div>
-          </li>
-          <li>
-            <div class="veh-info">
-              <div><span class="veh-name">Renault Clio 5</span><span class="veh-trans">Manuelle</span></div>
-              <span class="badge-dispo">Disponible</span>
-            </div>
-            <img class="veh-img" src="images/cars/clio5.jpg" alt="Clio 5" onerror="this.src='https://via.placeholder.com/300x130?text=Renault+Clio+5'">
-            <div class="veh-actions">
-              <button class="btn btn-resv" onclick="openModal('Renault Clio 5')">Réserver ce véhicule</button>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Catégorie SUV & Hybrides -->
-      <div class="cat-card">
-        <h3>SUV &amp; Hybrides</h3>
-        <ul>
-          <li>
-            <div class="veh-info">
-              <div><span class="veh-name">BYD Song Plus / Young</span><span class="veh-trans">Automatique / Hybride</span></div>
-              <span class="badge-off">Pas Disponible</span>
-            </div>
-            <img class="veh-img" src="images/cars/byd-song.jpg" alt="BYD Song" onerror="this.src='https://via.placeholder.com/300x130?text=BYD+Song'">
-            <div class="veh-actions">
-              <button class="btn btn-resv" style="opacity:0.6;" onclick="openModal('BYD Song Plus / Young')">Demande d'attente</button>
-            </div>
-          </li>
-          <li>
-            <div class="veh-info">
-              <div><span class="veh-name">Kia Sportage</span><span class="veh-trans">Automatique</span></div>
-              <span class="badge-off">Pas Disponible</span>
-            </div>
-            <img class="veh-img" src="images/cars/kia-sportage.jpg" alt="Kia Sportage" onerror="this.src='https://via.placeholder.com/300x130?text=Kia+Sportage'">
-            <div class="veh-actions">
-              <button class="btn btn-resv" style="opacity:0.6;" onclick="openModal('Kia Sportage')">Demande d'attente</button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- VIP / Avec Chauffeur -->
-    <div class="vip-section" id="chauffeur">
-      <div class="sec-head" style="margin-bottom:20px;">
-        <div class="eyebrow" style="color:var(--gold);">Service VIP</div>
-        <h2 style="color:#fff;">Location avec Chauffeur</h2>
-      </div>
-      <div class="vip-grid">
-        <div class="vip-card">
-          <div class="veh-info">
-            <div><h4>Jaguar F-Pace</h4><span class="vip-tag">✦ Avec Chauffeur</span></div>
-            <span class="badge-off">Pas Disponible</span>
+        <!-- Nom & Prénom -->
+        <div class="form-group">
+          <label for="fullName"><i class="fa-solid fa-user"></i> Nom et Prénom</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user icon-prefix"></i>
+            <input type="text" id="fullName" class="form-control" placeholder="ex: Ahmed Ben Ali" required minlength="3" maxlength="60" pattern="[A-Za-zÀ-ÿ\s\-']{3,60}">
           </div>
-          <img class="veh-img" src="images/cars/jaguar-fpace.jpg" alt="Jaguar F-Pace" onerror="this.src='https://via.placeholder.com/300x130?text=Jaguar+F-Pace'" style="margin:10px 0;">
-          <button class="btn btn-resv" style="width:100%; opacity:0.6;" onclick="openModal('Jaguar F-Pace (avec chauffeur)')">Demande d'attente</button>
+          <span class="field-hint" id="nameHint">Le nom doit contenir au moins 3 lettres.</span>
         </div>
 
-        <div class="vip-card">
-          <div class="veh-info">
-            <div><h4>Mercedes C200e AMG</h4><span class="vip-tag">✦ Avec Chauffeur</span></div>
-            <span class="badge-dispo">Disponible</span>
+        <!-- Téléphone avec Drapeau Dynamique -->
+        <div class="form-group">
+          <label for="phone"><i class="fa-solid fa-phone"></i> Téléphone</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-phone icon-prefix"></i>
+            <input type="tel" id="phone" class="form-control" placeholder="+216 22 123 456" required maxlength="18">
+            <span id="flagContainer" class="flag-badge"></span>
           </div>
-          <img class="veh-img" src="images/cars/mercedes-c200.jpg" alt="Mercedes C200e" onerror="this.src='https://via.placeholder.com/300x130?text=Mercedes+C200e'" style="margin:10px 0;">
-          <button class="btn btn-resv" style="width:100%; background:var(--gold); color:#000;" onclick="openModal('Mercedes-Benz C200e AMG (avec chauffeur)')">Réserver ce véhicule VIP</button>
+          <span class="field-hint" id="phoneHint">Numéro invalide (8 à 15 chiffres).</span>
         </div>
 
-        <div class="vip-card">
-          <div class="veh-info">
-            <div><h4>Mazda CX-7 V6</h4><span class="vip-tag">✦ Avec Chauffeur</span></div>
-            <span class="badge-dispo">Disponible</span>
+        <!-- Choix de la voiture -->
+        <div class="form-group">
+          <label for="carSelect"><i class="fa-solid fa-car-side"></i> Véhicule</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-car-side icon-prefix"></i>
+            <select id="carSelect" class="form-control" required>
+              <option value="" disabled selected>Choisir une voiture...</option>
+              <option value="Seat Ibiza">Seat Ibiza</option>
+              <option value="Hyundai i20">Hyundai i20</option>
+              <option value="Škoda Fabia">Škoda Fabia</option>
+              <option value="Dacia Sandero Stepway">Dacia Sandero Stepway</option>
+              <option value="Suzuki Swift">Suzuki Swift</option>
+              <option value="Kia Picanto">Kia Picanto</option>
+              <option value="BYD Song Plus">BYD Song Plus</option>
+              <option value="Kia Sportage">Kia Sportage</option>
+              <option value="Jaguar F-Pace">Jaguar F-Pace</option>
+              <option value="Mercedes-Benz C200 AMG">Mercedes-Benz C200 AMG</option>
+              <option value="Land Rover Defender">Land Rover Defender</option>
+            </select>
           </div>
-          <img class="veh-img" src="images/cars/mazda-cx7.jpg" alt="Mazda CX-7" onerror="this.src='https://via.placeholder.com/300x130?text=Mazda+CX-7'" style="margin:10px 0;">
-          <button class="btn btn-resv" style="width:100%; background:var(--gold); color:#000;" onclick="openModal('Mazda CX-7 V6 (avec chauffeur)')">Réserver ce véhicule VIP</button>
         </div>
 
-        <div class="vip-card">
-          <div class="veh-info">
-            <div><h4>Defender 2012 (7 Places)</h4><span class="vip-tag">✦ Avec Chauffeur</span></div>
-            <span class="badge-dispo">Disponible</span>
+        <!-- Agence de prise -->
+        <div class="form-group">
+          <label for="agencySelect"><i class="fa-solid fa-location-dot"></i> Agence de départ</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-location-dot icon-prefix"></i>
+            <select id="agencySelect" class="form-control" required>
+              <option value="Cité Ezzouhour 4">Cité Ezzouhour 4</option>
+              <option value="Le Bardo (Route X)">Le Bardo (Route X)</option>
+              <option value="Yasmine Hammamet">Yasmine Hammamet</option>
+            </select>
           </div>
-          <img class="veh-img" src="images/cars/defender.jpg" alt="Land Rover Defender" onerror="this.src='https://via.placeholder.com/300x130?text=Defender+7+Places'" style="margin:10px 0;">
-          <button class="btn btn-resv" style="width:100%; background:var(--gold); color:#000;" onclick="openModal('Land Rover Defender 7 Places (avec chauffeur)')">Réserver ce véhicule VIP</button>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Section Modes de Paiement & RIBs -->
-<section id="paiement" class="payment-sec">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Acompte &amp; Règlement</div>
-      <h2>Modes de Paiement Acceptés</h2>
-      <p>Pour valider définitivement votre réservation après notre appel téléphonique, un acompte de 20% est demandé via l'un des moyens suivants :</p>
-    </div>
-
-    <div class="payment-logos">
-      <span class="pay-badge">WAFACASH</span>
-      <span class="pay-badge">WESTERN UNION</span>
-      <span class="pay-badge">D17</span>
-      <span class="pay-badge">WORLDREMIT</span>
-      <span class="pay-badge">RIA MONEY TRANSFER</span>
-      <span class="pay-badge">MONEYGRAM</span>
-    </div>
-
-    <!-- Vos RIBs Officiels -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
-      <div class="bank-card">
-        <strong>Banque UIB</strong><br>
-        <span style="font-size:13px; color:var(--text-soft);">Titulaire : FATHI NAILI</span><br>
-        <div class="rib-code">12 038 0000002060957 41 TND</div>
-      </div>
-      <div class="bank-card">
-        <strong>Banque STB</strong><br>
-        <span style="font-size:13px; color:var(--text-soft);">Titulaire : Mohamed islem Naili</span><br>
-        <div class="rib-code">59 102 0306611489617 88 94 TND</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer id="contact" style="background:var(--ink); color:#fff; padding:40px 0;">
-  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;">
-    <div>
-      <h3 style="color:#fff; font-size:24px;">AMINE RENT A CAR</h3>
-      <p style="color:#aaa; font-size:14px; margin-top:6px;">Tunis (Ezzouhour 4) · Le Bardo (Route X) · Yasmine Hammamet</p>
-    </div>
-    <div>
-      <p style="font-weight:bold;">Contact Réservation :</p>
-      <p style="color:var(--gold); font-size:18px;">+216 21 289 073</p>
-      <p style="color:#aaa; font-size:12px;">Assistance 24/7 : +216 29 855 924</p>
-    </div>
-  </div>
-</footer>
-
-<!-- Modal de Réservation Interactif -->
-<div class="resv-modal" id="resvModal">
-  <div class="resv-content">
-    <div class="resv-close" onclick="closeModal()">&times;</div>
-    
-    <h3 id="modalCarTitle" style="font-size:26px; color:var(--ink);">Demande de Réservation</h3>
-
-    <!-- Encadré des 3 Etapes explicite -->
-    <div class="steps-box" style="margin-top:12px; padding:12px;">
-      <div class="steps-title" style="font-size:12px; margin-bottom:6px;">Procédure de Réservation :</div>
-      <p style="font-size:12px; color:var(--text-soft);">
-        1. Remplissez ce formulaire.<br>
-        2. ⏳ <b>Attendez notre appel téléphonique sous max 60 minutes</b> pour valider les prix et disponibilités.<br>
-        3. Envoyez <b>20% d'avance</b> pour bloquer le véhicule. Votre voiture vous attendra à l'Aéroport !
-      </p>
-    </div>
-
-    <!-- Formulaire lié à Google Sheets + WhatsApp -->
-    <form class="resv-form" id="resvForm" onsubmit="handleFormSubmit(event)">
-      <input type="hidden" id="carSelectedInput" name="car_name">
-
-      <div>
-        <label for="custName">Nom &amp; Prénom *</label>
-        <input type="text" id="custName" name="customer_name" required placeholder="Ex: Ahmed Ben Ali">
-      </div>
-
-      <div>
-        <label for="custPhone">Numéro de Téléphone * (Pour rappel &lt; 60 min)</label>
-        <input type="tel" id="custPhone" name="customer_phone" required placeholder="Ex: 22 123 456">
-      </div>
-
-      <div class="resv-row">
-        <div>
-          <label for="startDate">Date de Début *</label>
-          <input type="date" id="startDate" name="start_date" required>
+        <!-- Date Début (sécurisée) -->
+        <div class="form-group">
+          <label for="startDate"><i class="fa-solid fa-calendar-day"></i> Date de début</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-calendar-day icon-prefix"></i>
+            <input type="date" id="startDate" class="form-control" required>
+          </div>
+          <span class="field-hint" id="startHint">La date de début ne peut pas être dans le passé.</span>
         </div>
-        <div>
-          <label for="endDate">Date de Fin *</label>
-          <input type="date" id="endDate" name="end_date" required>
+
+        <!-- Date Fin (sécurisée) -->
+        <div class="form-group">
+          <label for="endDate"><i class="fa-solid fa-calendar-check"></i> Date de fin</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-calendar-check icon-prefix"></i>
+            <input type="date" id="endDate" class="form-control" required>
+          </div>
+          <span class="field-hint" id="endHint">La date de fin doit être après la date de début.</span>
+          <span class="duration-badge" id="durationBadge"><i class="fa-solid fa-clock"></i> <span id="durationText"></span></span>
         </div>
+
+        <!-- Remarques -->
+        <div class="form-group full-width">
+          <label for="notes"><i class="fa-solid fa-comment-dots"></i> Remarques particulières</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-comment-dots icon-prefix" style="top: 15px; align-self: flex-start;"></i>
+            <textarea id="notes" class="form-control" style="padding-left: 42px; height: 90px; resize: none;" placeholder="Besoins spécifiques, heure d'arrivée..." maxlength="500"></textarea>
+          </div>
+        </div>
+
+        <!-- Honeypot anti-bot : champ invisible, ne jamais le remplir -->
+        <div class="form-group hp-field" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
       </div>
 
-      <div>
-        <label for="pickupLoc">Lieu de Prise en Charge *</label>
-        <select id="pickupLoc" name="pickup_location">
-          <option value="Aéroport Tunis-Carthage">Aéroport Tunis-Carthage</option>
-          <option value="Agence Tunis (Ezzouhour)">Agence Tunis (Ezzouhour 4)</option>
-          <option value="Agence Le Bardo (Route X)">Agence Le Bardo (Route X)</option>
-          <option value="Agence Yasmine Hammamet">Agence Yasmine Hammamet</option>
-        </select>
-      </div>
-
-      <button type="submit" class="btn btn-primary" style="width:100%; margin-top:8px;">
-        Envoyer la Demande de Réservation
+      <button type="submit" id="submitBtn" class="btn-submit">
+        <span>Confirmer la réservation</span>
+        <i class="fa-solid fa-paper-plane"></i>
       </button>
+
+      <div id="alertMessage" class="alert-box"></div>
     </form>
   </div>
-</div>
 
-<script>
-  // Web App Google Apps Script
-  const GOOGLE_SHEET_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2tEVcArewBVIH4PkJXu7CX88HaNrDGz-IrNhqERqQew-SDI0OxsxESW1wq67zt6O7PQ/exec"; 
+  <script>
+    // URL de ton Google Apps Script Web App (déploiement "exec")
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2tEVcArewBVIH4PkJXu7CX88HaNrDGz-IrNhqERqQew-SDI0OxsxESW1wq67zt6O7PQ/exec";
 
-  let currentCar = "";
+    document.addEventListener("DOMContentLoaded", function () {
+      const startDateInput = document.getElementById("startDate");
+      const endDateInput = document.getElementById("endDate");
+      const phoneInput = document.getElementById("phone");
+      const nameInput = document.getElementById("fullName");
+      const flagContainer = document.getElementById("flagContainer");
+      const form = document.getElementById("reservationForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const alertMsg = document.getElementById("alertMessage");
+      const durationBadge = document.getElementById("durationBadge");
+      const durationText = document.getElementById("durationText");
+      const startHint = document.getElementById("startHint");
+      const endHint = document.getElementById("endHint");
+      const nameHint = document.getElementById("nameHint");
+      const phoneHint = document.getElementById("phoneHint");
+      const honeypot = document.getElementById("website");
 
-  function openModal(carName) {
-    currentCar = carName;
-    document.getElementById('modalCarTitle').innerText = "Réservation : " + carName;
-    document.getElementById('carSelectedInput').value = carName;
-    document.getElementById('resvModal').style.display = "flex";
-  }
+      // ====== 1. Bornes des dates : aujourd'hui -> aujourd'hui + 2 ans ======
+      // Empêche de choisir une date passée OU une année absurde (ex: 2164)
+      const now = new Date();
+      const todayStr = now.toISOString().split("T")[0];
 
-  function closeModal() {
-    document.getElementById('resvModal').style.display = "none";
-  }
+      const maxDate = new Date(now);
+      maxDate.setFullYear(maxDate.getFullYear() + 2);
+      const maxDateStr = maxDate.toISOString().split("T")[0];
 
-  function handleFormSubmit(e) {
-    e.preventDefault();
+      startDateInput.min = todayStr;
+      startDateInput.max = maxDateStr;
+      endDateInput.min = todayStr;
+      endDateInput.max = maxDateStr;
 
-    const name = document.getElementById('custName').value;
-    const phone = document.getElementById('custPhone').value;
-    const start = document.getElementById('startDate').value;
-    const end = document.getElementById('endDate').value;
-    const loc = document.getElementById('pickupLoc').value;
+      // Vérifie qu'une date saisie/tapée est bien une date réelle et dans les bornes autorisées
+      function isValidBoundedDate(value) {
+        if (!value) return false;
+        // Format attendu strictement YYYY-MM-DD
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+        const d = new Date(value + "T00:00:00");
+        if (isNaN(d.getTime())) return false;
+        const minD = new Date(todayStr + "T00:00:00");
+        const maxD = new Date(maxDateStr + "T00:00:00");
+        return d >= minD && d <= maxD;
+      }
 
-    // 1. Envoi vers Google Sheets si l'URL est configurée
-    if (GOOGLE_SHEET_SCRIPT_URL !== "") {
-      const formData = new FormData(document.getElementById('resvForm'));
-      fetch(GOOGLE_SHEET_SCRIPT_URL, { method: 'POST', body: formData })
-        .then(res => console.log('Demande enregistrée sur Google Sheet'))
-        .catch(err => console.error('Erreur Google Sheet:', err));
-    }
+      function calcDuration() {
+        durationBadge.classList.remove("show");
+        if (startDateInput.value && endDateInput.value) {
+          const d1 = new Date(startDateInput.value + "T00:00:00");
+          const d2 = new Date(endDateInput.value + "T00:00:00");
+          const diffDays = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+          if (diffDays > 0) {
+            durationText.textContent = diffDays + (diffDays === 1 ? " jour de location" : " jours de location");
+            durationBadge.classList.add("show");
+          }
+        }
+      }
 
-    // 2. Message de confirmation pour le client + Redirection WhatsApp
-    alert("✅ Votre demande pour la " + currentCar + " a été envoyée avec succès !\n\n📞 Notre équipe vous rappellera par téléphone au " + phone + " dans un délai MAXIMAL DE 60 MINUTES pour valider les détails et l'avance de 20%.");
+      function validateDates() {
+        let ok = true;
+        startHint.classList.remove("show");
+        endHint.classList.remove("show");
+        startDateInput.classList.remove("input-error");
+        endDateInput.classList.remove("input-error");
 
-    const message = `*DEMANDE DE RÉSERVATION - AMINE RENT A CAR*\n\n` +
-                    `🚗 *Véhicule:* ${currentCar}\n` +
-                    `👤 *Nom:* ${name}\n` +
-                    `📞 *Tél:* ${phone}\n` +
-                    `📅 *Du:* ${start} *Au:* ${end}\n` +
-                    `📍 *Lieu:* ${loc}\n\n` +
-                    `_J'attends votre appel de confirmation dans un délai de 60 min._`;
+        // Corrige/rejette toute valeur hors bornes (blocage anti-année-fantaisiste + anti-date passée)
+        if (startDateInput.value && !isValidBoundedDate(startDateInput.value)) {
+          startDateInput.value = "";
+          startDateInput.classList.add("input-error");
+          startHint.classList.add("show");
+          ok = false;
+        }
+        if (endDateInput.value && !isValidBoundedDate(endDateInput.value)) {
+          endDateInput.value = "";
+          endDateInput.classList.add("input-error");
+          endHint.classList.add("show");
+          ok = false;
+        }
 
-    window.open(`https://wa.me/21621289073?text=${encodeURIComponent(message)}`, '_blank');
-    closeModal();
-  }
+        // La date de fin doit toujours être après la date de début
+        if (startDateInput.value) {
+          endDateInput.min = startDateInput.value;
+          if (endDateInput.value && endDateInput.value < startDateInput.value) {
+            endDateInput.classList.add("input-error");
+            endHint.classList.add("show");
+            endDateInput.value = "";
+            ok = false;
+          }
+        }
 
-  window.onclick = function(event) {
-    const modal = document.getElementById('resvModal');
-    if (event.target == modal) {
-      closeModal();
-    }
-  }
-</script>
+        calcDuration();
+        return ok;
+      }
 
+      startDateInput.addEventListener("change", validateDates);
+      startDateInput.addEventListener("input", validateDates);
+      endDateInput.addEventListener("change", validateDates);
+      endDateInput.addEventListener("input", validateDates);
+
+      // ====== 2. Détection de l'indicatif téléphonique ======
+      phoneInput.addEventListener("input", function () {
+        const val = phoneInput.value.trim();
+        if (val.startsWith("+216") || val.startsWith("00216") || val.startsWith("216")) {
+          flagContainer.textContent = "🇹🇳";
+        } else if (val.startsWith("+33") || val.startsWith("0033")) {
+          flagContainer.textContent = "🇫🇷";
+        } else if (val.startsWith("+39") || val.startsWith("0039")) {
+          flagContainer.textContent = "🇮🇹";
+        } else if (val.startsWith("+")) {
+          flagContainer.textContent = "🌐";
+        } else {
+          flagContainer.textContent = "";
+        }
+        phoneInput.classList.remove("input-error");
+        phoneHint.classList.remove("show");
+      });
+
+      nameInput.addEventListener("input", function () {
+        nameInput.classList.remove("input-error");
+        nameHint.classList.remove("show");
+      });
+
+      // ====== 3. Nettoyage anti-XSS ======
+      function sanitizeInput(str) {
+        return String(str).replace(/[&<>"']/g, function (m) {
+          return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+          }[m];
+        });
+      }
+
+      function showAlert(message, type) {
+        alertMsg.className = `alert-box alert-${type}`;
+        alertMsg.textContent = message;
+        alertMsg.style.display = "block";
+      }
+
+      // ====== 4. Anti-spam : empêche l'envoi répété en rafale ======
+      let lastSubmitTime = 0;
+      const SUBMIT_COOLDOWN_MS = 15000; // 15 secondes entre deux envois
+
+      // ====== 5. Soumission du formulaire et envoi par email ======
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Honeypot rempli = très probablement un bot -> on bloque silencieusement
+        if (honeypot && honeypot.value.trim() !== "") {
+          showAlert("Une erreur s'est produite. Veuillez réessayer.", "danger");
+          return;
+        }
+
+        // Anti double-envoi rapide
+        const now2 = Date.now();
+        if (now2 - lastSubmitTime < SUBMIT_COOLDOWN_MS) {
+          showAlert("Veuillez patienter quelques secondes avant de renvoyer une demande.", "danger");
+          return;
+        }
+
+        let valid = true;
+
+        // Validation du nom
+        if (!nameInput.value.trim() || nameInput.value.trim().length < 3) {
+          nameInput.classList.add("input-error");
+          nameHint.classList.add("show");
+          valid = false;
+        }
+
+        // Validation du téléphone
+        const phoneRegex = /^[+]?[0-9\s\-]{8,15}$/;
+        if (!phoneRegex.test(phoneInput.value.trim())) {
+          phoneInput.classList.add("input-error");
+          phoneHint.classList.add("show");
+          valid = false;
+        }
+
+        // Re-validation stricte des dates (bloque toute manipulation manuelle du champ)
+        if (!isValidBoundedDate(startDateInput.value) || !isValidBoundedDate(endDateInput.value)) {
+          valid = false;
+        }
+        if (startDateInput.value && endDateInput.value && endDateInput.value <= startDateInput.value) {
+          endDateInput.classList.add("input-error");
+          endHint.classList.add("show");
+          valid = false;
+        }
+
+        if (!valid) {
+          showAlert("Veuillez corriger les champs indiqués en rouge.", "danger");
+          return;
+        }
+
+        // Désactiver le bouton pendant l'envoi
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Envoi en cours...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
+
+        const d1 = new Date(startDateInput.value + "T00:00:00");
+        const d2 = new Date(endDateInput.value + "T00:00:00");
+        const nbJours = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+
+        // Préparation des données nettoyées
+        const reservationData = {
+          client_name: sanitizeInput(nameInput.value.trim()),
+          client_phone: sanitizeInput(phoneInput.value.trim()),
+          car_model: sanitizeInput(document.getElementById("carSelect").value),
+          agency: sanitizeInput(document.getElementById("agencySelect").value),
+          start_date: startDateInput.value,
+          end_date: endDateInput.value,
+          duration_days: nbJours,
+          notes: sanitizeInput(document.getElementById("notes").value.trim() || "Aucune")
+        };
+
+        /*
+           Google Apps Script Web App :
+           - Le formulaire envoie les données à GOOGLE_SCRIPT_URL (défini en haut du script).
+           - Le script Apps Script (côté Google) ajoute la ligne dans Google Sheets ET
+             envoie l'email de notification (voir le code Apps Script fourni séparément).
+           - mode: "no-cors" est obligatoire ici car Apps Script ne gère pas les requêtes
+             preflight CORS proprement -> du coup on ne peut pas lire la vraie réponse
+             (elle est "opaque"). On considère l'envoi réussi si fetch() ne plante pas
+             au niveau réseau. Pour vérifier réellement que ça marche, va checker ton
+             Google Sheet après un test.
+        */
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(reservationData)
+        })
+          .then(function () {
+            lastSubmitTime = Date.now();
+            showAlert("Votre demande de réservation a été envoyée avec succès ! Nous vous contacterons sous 60 min.", "success");
+            form.reset();
+            flagContainer.textContent = "";
+            durationBadge.classList.remove("show");
+            startDateInput.min = todayStr;
+            startDateInput.max = maxDateStr;
+            endDateInput.min = todayStr;
+            endDateInput.max = maxDateStr;
+          })
+          .catch(function (error) {
+            console.error("Échec de l'envoi vers Google Sheets :", error);
+            showAlert("Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou nous contacter directement.", "danger");
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<span>Confirmer la réservation</span> <i class="fa-solid fa-paper-plane"></i>`;
+          });
+      });
+    });
+  </script>
 </body>
 </html>
