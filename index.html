@@ -2,12 +2,17 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Amine Rent a Car - Réservation en ligne</title>
+
+  <!-- Logo / Favicon dans l'onglet du navigateur.
+       IMPORTANT : adapte "images/logo.png" au chemin réel de ton logo dans le repo GitHub. -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
 
   <!-- FontAwesome Icons & Google Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -30,6 +35,14 @@
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
+    }
+
+    html[lang="ar"] body,
+    html[lang="ar"] input,
+    html[lang="ar"] select,
+    html[lang="ar"] textarea,
+    html[lang="ar"] button {
+      font-family: 'Tajawal', 'Poppins', sans-serif;
     }
 
     body {
@@ -60,6 +73,12 @@
       40%, 80% { transform: translateX(6px); }
     }
 
+    @keyframes pulseSuccess {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
     .booking-container {
       background: var(--card-bg);
       width: 100%;
@@ -73,9 +92,48 @@
       border-top: 5px solid var(--primary-color);
     }
 
+    /* Sélecteur de langue */
+    .lang-switcher {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+    }
+
+    html[dir="rtl"] .lang-switcher {
+      right: auto;
+      left: 16px;
+    }
+
+    .lang-btn {
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+      color: var(--muted-text);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-btn:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    .lang-btn.active {
+      background: var(--secondary-color);
+      color: #fff;
+      border-color: var(--secondary-color);
+    }
+
     .booking-header {
       text-align: center;
       margin-bottom: 35px;
+      padding-top: 10px;
     }
 
     .booking-header h2 {
@@ -91,6 +149,11 @@
     .booking-header h2 i {
       color: var(--primary-color);
       margin-right: 8px;
+    }
+
+    html[dir="rtl"] .booking-header h2 i {
+      margin-right: 0;
+      margin-left: 8px;
     }
 
     .booking-header h2::after {
@@ -119,6 +182,21 @@
     @media (max-width: 768px) {
       .form-grid { grid-template-columns: 1fr; }
       .booking-container { padding: 25px; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 10px; }
+      .booking-container { padding: 20px 16px; border-radius: 8px; }
+      .booking-header { padding-top: 34px; margin-bottom: 25px; }
+      .booking-header h2 { font-size: 1.5rem; }
+      .booking-header p { font-size: 0.85rem; }
+      .lang-switcher { top: 10px; right: 10px; }
+      html[dir="rtl"] .lang-switcher { left: 10px; }
+      .lang-btn { padding: 4px 8px; font-size: 0.7rem; }
+      .form-grid { gap: 14px; }
+      .form-control { font-size: 0.9rem; padding: 11px 14px 11px 40px; }
+      #phone { padding-right: 44px; }
+      .btn-submit { font-size: 1rem; padding: 14px; }
     }
 
     .form-group {
@@ -160,6 +238,11 @@
       pointer-events: none;
     }
 
+    html[dir="rtl"] .input-wrapper i.icon-prefix {
+      left: auto;
+      right: 14px;
+    }
+
     .form-control {
       width: 100%;
       padding: 12px 15px 12px 42px;
@@ -169,6 +252,10 @@
       transition: var(--transition);
       outline: none;
       background: #f8fafc;
+    }
+
+    html[dir="rtl"] .form-control {
+      padding: 12px 42px 12px 15px;
     }
 
     .form-control:focus {
@@ -186,7 +273,59 @@
       animation: shake 0.4s ease;
     }
 
-    /* Honeypot anti-bot (invisible pour les humains) */
+    .form-control:disabled {
+      background: #eef1f5;
+      color: #a8b0bb;
+      cursor: not-allowed;
+    }
+
+    /* FIX: le champ téléphone a besoin d'une marge à droite pour laisser
+       la place au drapeau, sinon le texte tapé passe dessous/dessus */
+    #phone {
+      padding-right: 48px;
+    }
+
+    html[dir="rtl"] #phone {
+      padding-right: 15px;
+      padding-left: 48px;
+    }
+
+    /* Affichage de la photo de la voiture sélectionnée */
+    .car-preview-container {
+      margin-top: 15px;
+      text-align: center;
+      display: none;
+    }
+
+    .car-preview-container.show {
+      display: block;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .car-preview-img {
+      max-width: 100%;
+      max-height: 180px;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 480px) {
+      .car-preview-img { max-height: 130px; }
+    }
+
+    .car-preview-fallback {
+      display: none;
+      padding: 18px;
+      color: var(--muted-text);
+      font-size: 0.85rem;
+      border: 1px dashed var(--border-color);
+      border-radius: 8px;
+      background: #f8fafc;
+    }
+
+    /* Honeypot anti-bot */
     .hp-field {
       position: absolute;
       left: -9999px;
@@ -196,14 +335,19 @@
       tab-index: -1;
     }
 
-    /* Phone Input Flag Styling */
     .flag-badge {
       position: absolute;
-      right: 12px;
-      font-size: 1.4rem;
+      right: 14px;
+      font-size: 1.3rem;
       pointer-events: none;
       transition: var(--transition);
       animation: floatEffect 2s infinite;
+      line-height: 1;
+    }
+
+    html[dir="rtl"] .flag-badge {
+      right: auto;
+      left: 14px;
     }
 
     /* Compteur de jours */
@@ -230,6 +374,28 @@
 
     .field-hint.show {
       display: block;
+    }
+
+    .notes-control {
+      padding-left: 42px;
+      height: 90px;
+      resize: none;
+    }
+
+    html[dir="rtl"] .notes-control {
+      padding-left: 15px;
+      padding-right: 42px;
+    }
+
+    .char-counter {
+      font-size: 0.75rem;
+      color: var(--muted-text);
+      text-align: right;
+      margin-top: 4px;
+    }
+
+    html[dir="rtl"] .char-counter {
+      text-align: left;
     }
 
     /* Submit Button */
@@ -270,12 +436,21 @@
     /* Custom Notification Alert */
     .alert-box {
       display: none;
-      padding: 15px;
+      padding: 16px 18px;
       border-radius: 8px;
       margin-top: 20px;
       font-weight: 500;
       text-align: center;
-      animation: fadeInUp 0.4s ease;
+      animation: fadeInUp 0.4s ease, pulseSuccess 0.6s ease 0.4s;
+    }
+
+    .alert-box i {
+      margin-right: 8px;
+    }
+
+    html[dir="rtl"] .alert-box i {
+      margin-right: 0;
+      margin-left: 8px;
     }
 
     .alert-success {
@@ -289,14 +464,42 @@
       color: #842029;
       border: 1px solid #f5c2c7;
     }
+
+    .trust-strip {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.78rem;
+      color: var(--muted-text);
+    }
+
+    .trust-strip span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust-strip i {
+      color: var(--accent-color);
+    }
   </style>
 </head>
 <body>
 
   <div class="booking-container">
+    <div class="lang-switcher" role="group" aria-label="Langue / اللغة / Lingua">
+      <button type="button" class="lang-btn" data-lang="fr">FR</button>
+      <button type="button" class="lang-btn" data-lang="ar">AR</button>
+      <button type="button" class="lang-btn" data-lang="it">IT</button>
+    </div>
+
     <div class="booking-header">
       <h2><i class="fa-solid fa-car"></i> Amine Rent a Car</h2>
-      <p>Réservez votre véhicule en toute sécurité en quelques clics</p>
+      <p data-i18n="subtitle">Réservez votre véhicule en toute sécurité en quelques clics</p>
     </div>
 
     <form id="reservationForm" autocomplete="off">
@@ -304,50 +507,58 @@
 
         <!-- Nom & Prénom -->
         <div class="form-group">
-          <label for="fullName"><i class="fa-solid fa-user"></i> Nom et Prénom</label>
+          <label for="fullName"><i class="fa-solid fa-user"></i> <span data-i18n="labelName">Nom et Prénom</span></label>
           <div class="input-wrapper">
             <i class="fa-solid fa-user icon-prefix"></i>
-            <input type="text" id="fullName" class="form-control" placeholder="ex: Ahmed Ben Ali" required minlength="3" maxlength="60" pattern="[A-Za-zÀ-ÿ\s\-']{3,60}">
+            <input type="text" id="fullName" class="form-control" data-i18n-placeholder="placeholderName" placeholder="ex: Ahmed Ben Ali" required minlength="3" maxlength="60" pattern="[A-Za-zÀ-ÿ\s\-']{3,60}">
           </div>
-          <span class="field-hint" id="nameHint">Le nom doit contenir au moins 3 lettres.</span>
+          <span class="field-hint" id="nameHint" data-i18n="hintName">Le nom doit contenir au moins 3 lettres.</span>
         </div>
 
         <!-- Téléphone avec Drapeau Dynamique -->
         <div class="form-group">
-          <label for="phone"><i class="fa-solid fa-phone"></i> Téléphone</label>
+          <label for="phone"><i class="fa-solid fa-phone"></i> <span data-i18n="labelPhone">Téléphone</span></label>
           <div class="input-wrapper">
             <i class="fa-solid fa-phone icon-prefix"></i>
             <input type="tel" id="phone" class="form-control" placeholder="+216 22 123 456" required maxlength="18">
             <span id="flagContainer" class="flag-badge"></span>
           </div>
-          <span class="field-hint" id="phoneHint">Numéro invalide (8 à 15 chiffres).</span>
+          <span class="field-hint" id="phoneHint" data-i18n="hintPhone">Numéro invalide (8 à 15 chiffres).</span>
         </div>
 
         <!-- Choix de la voiture -->
-        <div class="form-group">
-          <label for="carSelect"><i class="fa-solid fa-car-side"></i> Véhicule</label>
+        <div class="form-group full-width">
+          <label for="carSelect"><i class="fa-solid fa-car-side"></i> <span data-i18n="labelCar">Véhicule</span></label>
           <div class="input-wrapper">
             <i class="fa-solid fa-car-side icon-prefix"></i>
             <select id="carSelect" class="form-control" required>
-              <option value="" disabled selected>Choisir une voiture...</option>
+              <option value="" disabled selected data-i18n="optionCarDefault">Choisir une voiture...</option>
+              <option value="Renault Clio 5" data-img="images/les photos/clio5.jpg.jpg">Renault Clio 5</option>
+              <option value="Hyundai i20" data-img="images/les photos/hyundai-i20.jpg.png">Hyundai i20</option>
+              <option value="Land Rover Defender" data-img="images/les photos/defender.jpg.webp">Land Rover Defender</option>
               <option value="Seat Ibiza">Seat Ibiza</option>
-              <option value="Hyundai i20">Hyundai i20</option>
               <option value="Škoda Fabia">Škoda Fabia</option>
               <option value="Dacia Sandero Stepway">Dacia Sandero Stepway</option>
-              <option value="Suzuki Swift">Suzuki Swift</option>
-              <option value="Kia Picanto">Kia Picanto</option>
+              <option value="Suzuki Swift" data-img="images/les photos/suzuki-swift.jpg">Suzuki Swift</option>
+              <option value="Kia Picanto" data-img="images/les photos/kia-picanto.jpg">Kia Picanto</option>
+              <option value="Kia Stonic" data-img="images/les photos/kia-stonic.jpg">Kia Stonic</option>
               <option value="BYD Song Plus">BYD Song Plus</option>
               <option value="Kia Sportage">Kia Sportage</option>
               <option value="Jaguar F-Pace">Jaguar F-Pace</option>
               <option value="Mercedes-Benz C200 AMG">Mercedes-Benz C200 AMG</option>
-              <option value="Land Rover Defender">Land Rover Defender</option>
             </select>
+          </div>
+          <div id="carPreviewBox" class="car-preview-container">
+            <img id="carPreviewImg" class="car-preview-img" src="" alt="Aperçu véhicule">
+            <div id="carPreviewFallback" class="car-preview-fallback">
+              <i class="fa-solid fa-image"></i> <span data-i18n="photoUnavailable">Photo non disponible pour ce modèle</span>
+            </div>
           </div>
         </div>
 
         <!-- Agence de prise -->
-        <div class="form-group">
-          <label for="agencySelect"><i class="fa-solid fa-location-dot"></i> Agence de départ</label>
+        <div class="form-group full-width">
+          <label for="agencySelect"><i class="fa-solid fa-location-dot"></i> <span data-i18n="labelAgency">Agence de départ</span></label>
           <div class="input-wrapper">
             <i class="fa-solid fa-location-dot icon-prefix"></i>
             <select id="agencySelect" class="form-control" required>
@@ -358,37 +569,38 @@
           </div>
         </div>
 
-        <!-- Date Début (sécurisée) -->
+        <!-- Date Début -->
         <div class="form-group">
-          <label for="startDate"><i class="fa-solid fa-calendar-day"></i> Date de début</label>
+          <label for="startDate"><i class="fa-solid fa-calendar-day"></i> <span data-i18n="labelStart">Date de début</span></label>
           <div class="input-wrapper">
             <i class="fa-solid fa-calendar-day icon-prefix"></i>
             <input type="date" id="startDate" class="form-control" required>
           </div>
-          <span class="field-hint" id="startHint">La date de début ne peut pas être dans le passé.</span>
+          <span class="field-hint" id="startHint" data-i18n="hintStart">La date de début ne peut pas être dans le passé.</span>
         </div>
 
-        <!-- Date Fin (sécurisée) -->
+        <!-- Date Fin -->
         <div class="form-group">
-          <label for="endDate"><i class="fa-solid fa-calendar-check"></i> Date de fin</label>
+          <label for="endDate"><i class="fa-solid fa-calendar-check"></i> <span data-i18n="labelEnd">Date de fin</span></label>
           <div class="input-wrapper">
             <i class="fa-solid fa-calendar-check icon-prefix"></i>
-            <input type="date" id="endDate" class="form-control" required>
+            <input type="date" id="endDate" class="form-control" required disabled>
           </div>
-          <span class="field-hint" id="endHint">La date de fin doit être après la date de début.</span>
+          <span class="field-hint" id="endHint" data-i18n="hintEnd">La date de fin doit être après la date de début.</span>
           <span class="duration-badge" id="durationBadge"><i class="fa-solid fa-clock"></i> <span id="durationText"></span></span>
         </div>
 
         <!-- Remarques -->
         <div class="form-group full-width">
-          <label for="notes"><i class="fa-solid fa-comment-dots"></i> Remarques particulières</label>
+          <label for="notes"><i class="fa-solid fa-comment-dots"></i> <span data-i18n="labelNotes">Remarques particulières</span></label>
           <div class="input-wrapper">
             <i class="fa-solid fa-comment-dots icon-prefix" style="top: 15px; align-self: flex-start;"></i>
-            <textarea id="notes" class="form-control" style="padding-left: 42px; height: 90px; resize: none;" placeholder="Besoins spécifiques, heure d'arrivée..." maxlength="500"></textarea>
+            <textarea id="notes" class="form-control notes-control" data-i18n-placeholder="placeholderNotes" placeholder="Besoins spécifiques, heure d'arrivée..." maxlength="500"></textarea>
           </div>
+          <span class="char-counter" id="notesCounter">0 / 500</span>
         </div>
 
-        <!-- Honeypot anti-bot : champ invisible, ne jamais le remplir -->
+        <!-- Honeypot anti-bot -->
         <div class="form-group hp-field" aria-hidden="true">
           <label for="website">Website</label>
           <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
@@ -397,19 +609,164 @@
       </div>
 
       <button type="submit" id="submitBtn" class="btn-submit">
-        <span>Confirmer la réservation</span>
+        <span data-i18n="submitBtn">Confirmer la réservation</span>
         <i class="fa-solid fa-paper-plane"></i>
       </button>
 
-      <div id="alertMessage" class="alert-box"></div>
+      <div id="alertMessage" class="alert-box" role="alert" aria-live="polite"></div>
+
+      <div class="trust-strip">
+        <span><i class="fa-solid fa-shield-halved"></i> <span data-i18n="trustSecure">Paiement sécurisé</span></span>
+        <span><i class="fa-solid fa-clock"></i> <span data-i18n="trustFast">Réponse sous 60 min</span></span>
+        <span><i class="fa-solid fa-star"></i> <span data-i18n="trustQuality">Véhicules récents et entretenus</span></span>
+      </div>
     </form>
   </div>
 
   <script>
-    // URL de ton Google Apps Script Web App (déploiement "exec")
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2tEVcArewBVIH4PkJXu7CX88HaNrDGz-IrNhqERqQew-SDI0OxsxESW1wq67zt6O7PQ/exec";
 
+    // ==== EMAIL DE NOTIFICATION (indépendant du Apps Script) ====
+    // Web3Forms envoie un email directement, sans passer par le Apps Script.
+    // 1) Va sur https://web3forms.com, entre ton email, ils t'envoient une clé gratuite.
+    // 2) Colle cette clé ici à la place du texte entre guillemets.
+    // Tant que la clé n'est pas remplacée, cette partie est ignorée automatiquement
+    // et le site continue de fonctionner normalement (Google Sheets reste actif).
+    const WEB3FORMS_ACCESS_KEY = "55b34848-6e1d-40c7-a32b-2d4af1b7eb0f";
+
+    const TRANSLATIONS = {
+      fr: {
+        dir: "ltr",
+        pageTitle: "Amine Rent a Car - Réservation en ligne",
+        subtitle: "Réservez votre véhicule en toute sécurité en quelques clics",
+        labelName: "Nom et Prénom",
+        placeholderName: "ex: Ahmed Ben Ali",
+        hintName: "Le nom doit contenir au moins 3 lettres.",
+        labelPhone: "Téléphone",
+        hintPhone: "Numéro invalide (8 à 15 chiffres).",
+        labelCar: "Véhicule",
+        optionCarDefault: "Choisir une voiture...",
+        photoUnavailable: "Photo non disponible pour ce modèle",
+        labelAgency: "Agence de départ",
+        labelStart: "Date de début",
+        hintStart: "La date de début ne peut pas être dans le passé.",
+        labelEnd: "Date de fin",
+        hintEnd: "La date de fin doit être après la date de début.",
+        labelNotes: "Remarques particulières",
+        placeholderNotes: "Besoins spécifiques, heure d'arrivée...",
+        submitBtn: "Confirmer la réservation",
+        submitBtnSending: "Envoi en cours...",
+        trustSecure: "Réservation sécurisée",
+        trustFast: "Réponse sous 60 min",
+        trustQuality: "Véhicules récents et entretenus",
+        durationDay: "jour de location",
+        durationDays: "jours de location",
+        errSuccess: "Votre demande de réservation a été envoyée avec succès ! Nous vous contacterons sous 60 min.",
+        errFields: "Veuillez corriger les champs indiqués en rouge.",
+        errGeneric: "Une erreur s'est produite. Veuillez réessayer.",
+        errSend: "Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou nous contacter directement.",
+        errCooldown: (s) => `Veuillez patienter encore ${s}s avant de renvoyer une demande.`
+      },
+      ar: {
+        dir: "rtl",
+        pageTitle: "Amine Rent a Car - احجز سيارتك",
+        subtitle: "احجز سيارتك بكل أمان في بضع نقرات",
+        labelName: "الاسم و اللقب",
+        placeholderName: "مثال: أحمد بن علي",
+        hintName: "لازم الاسم يحتوي على 3 حروف على الأقل.",
+        labelPhone: "رقم الهاتف",
+        hintPhone: "رقم غير صحيح (من 8 إلى 15 رقم).",
+        labelCar: "السيارة",
+        optionCarDefault: "اختر سيارة...",
+        photoUnavailable: "الصورة غير متوفرة لهذا الموديل",
+        labelAgency: "وكالة الانطلاق",
+        labelStart: "تاريخ البداية",
+        hintStart: "تاريخ البداية ما ينجمش يكون فالماضي.",
+        labelEnd: "تاريخ النهاية",
+        hintEnd: "تاريخ النهاية لازم يكون بعد تاريخ البداية.",
+        labelNotes: "ملاحظات إضافية",
+        placeholderNotes: "احتياجات خاصة، وقت الوصول...",
+        submitBtn: "تأكيد الحجز",
+        submitBtnSending: "جاري الإرسال...",
+        trustSecure: "حجز آمن",
+        trustFast: "الرد خلال 60 دقيقة",
+        trustQuality: "سيارات حديثة و في حالة جيدة",
+        durationDay: "يوم كراء",
+        durationDays: "أيام كراء",
+        errSuccess: "تم إرسال طلب الحجز بنجاح! سنتصل بك خلال 60 دقيقة.",
+        errFields: "من فضلك صحح الحقول المؤشرة بالأحمر.",
+        errGeneric: "حدث خطأ. حاول مرة أخرى.",
+        errSend: "حدث خطأ أثناء الإرسال. حاول مرة أخرى أو اتصل بنا مباشرة.",
+        errCooldown: (s) => `من فضلك انتظر ${s} ثانية قبل إعادة الإرسال.`
+      },
+      it: {
+        dir: "ltr",
+        pageTitle: "Amine Rent a Car - Prenotazione online",
+        subtitle: "Prenota il tuo veicolo in tutta sicurezza in pochi click",
+        labelName: "Nome e Cognome",
+        placeholderName: "es: Ahmed Ben Ali",
+        hintName: "Il nome deve contenere almeno 3 lettere.",
+        labelPhone: "Telefono",
+        hintPhone: "Numero non valido (da 8 a 15 cifre).",
+        labelCar: "Veicolo",
+        optionCarDefault: "Scegli un'auto...",
+        photoUnavailable: "Foto non disponibile per questo modello",
+        labelAgency: "Agenzia di partenza",
+        labelStart: "Data di inizio",
+        hintStart: "La data di inizio non può essere nel passato.",
+        labelEnd: "Data di fine",
+        hintEnd: "La data di fine deve essere successiva alla data di inizio.",
+        labelNotes: "Note particolari",
+        placeholderNotes: "Esigenze specifiche, orario di arrivo...",
+        submitBtn: "Conferma la prenotazione",
+        submitBtnSending: "Invio in corso...",
+        trustSecure: "Prenotazione sicura",
+        trustFast: "Risposta entro 60 minuti",
+        trustQuality: "Veicoli recenti e ben mantenuti",
+        durationDay: "giorno di noleggio",
+        durationDays: "giorni di noleggio",
+        errSuccess: "La tua richiesta di prenotazione è stata inviata con successo! Ti contatteremo entro 60 minuti.",
+        errFields: "Correggi i campi evidenziati in rosso.",
+        errGeneric: "Si è verificato un errore. Riprova.",
+        errSend: "Si è verificato un errore durante l'invio. Riprova o contattaci direttamente.",
+        errCooldown: (s) => `Attendi ancora ${s}s prima di inviare un'altra richiesta.`
+      }
+    };
+
+    let currentLang = "fr";
+
+    function applyLanguage(lang) {
+      if (!TRANSLATIONS[lang]) lang = "fr";
+      currentLang = lang;
+      const t = TRANSLATIONS[lang];
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = t.dir;
+      document.title = t.pageTitle;
+
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        const key = el.getAttribute("data-i18n");
+        if (t[key]) el.textContent = t[key];
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (t[key]) el.setAttribute("placeholder", t[key]);
+      });
+
+      document.querySelectorAll(".lang-btn").forEach(function (btn) {
+        btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+      });
+
+      try { localStorage.setItem("arc_lang", lang); } catch (e) { /* ignore */ }
+
+      // Recalcule les textes dynamiques déjà affichés (durée, badges) dans la nouvelle langue
+      if (typeof window.__arc_recalcDuration === "function") window.__arc_recalcDuration();
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
+      const pageLoadTime = Date.now();
+      const MIN_FILL_TIME_MS = 2500; // anti-bot : un humain met plus de temps à remplir le formulaire
+
       const startDateInput = document.getElementById("startDate");
       const endDateInput = document.getElementById("endDate");
       const phoneInput = document.getElementById("phone");
@@ -425,9 +782,53 @@
       const nameHint = document.getElementById("nameHint");
       const phoneHint = document.getElementById("phoneHint");
       const honeypot = document.getElementById("website");
+      const notesInput = document.getElementById("notes");
+      const notesCounter = document.getElementById("notesCounter");
 
-      // ====== 1. Bornes des dates : aujourd'hui -> aujourd'hui + 2 ans ======
-      // Empêche de choisir une date passée OU une année absurde (ex: 2164)
+      const carSelect = document.getElementById("carSelect");
+      const carPreviewBox = document.getElementById("carPreviewBox");
+      const carPreviewImg = document.getElementById("carPreviewImg");
+      const carPreviewFallback = document.getElementById("carPreviewFallback");
+
+      // ---- Langue ----
+      document.querySelectorAll(".lang-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          applyLanguage(btn.getAttribute("data-lang"));
+        });
+      });
+      let savedLang = "fr";
+      try { savedLang = localStorage.getItem("arc_lang") || "fr"; } catch (e) { /* ignore */ }
+      applyLanguage(savedLang);
+
+      // Compteur de caractères pour les remarques
+      notesInput.addEventListener("input", function () {
+        notesCounter.textContent = notesInput.value.length + " / 500";
+      });
+
+      // Affichage de la photo de la voiture — avec repli propre si l'image casse
+      carSelect.addEventListener("change", function () {
+        const selectedOption = carSelect.options[carSelect.selectedIndex];
+        const imgPath = selectedOption.getAttribute("data-img");
+
+        carPreviewFallback.style.display = "none";
+        carPreviewImg.style.display = "block";
+
+        if (imgPath) {
+          carPreviewImg.src = imgPath;
+          carPreviewBox.classList.add("show");
+        } else {
+          carPreviewImg.style.display = "none";
+          carPreviewFallback.style.display = "block";
+          carPreviewBox.classList.add("show");
+        }
+      });
+
+      carPreviewImg.addEventListener("error", function () {
+        carPreviewImg.style.display = "none";
+        carPreviewFallback.style.display = "block";
+      });
+
+      // Bornes des dates
       const now = new Date();
       const todayStr = now.toISOString().split("T")[0];
 
@@ -440,10 +841,8 @@
       endDateInput.min = todayStr;
       endDateInput.max = maxDateStr;
 
-      // Vérifie qu'une date saisie/tapée est bien une date réelle et dans les bornes autorisées
       function isValidBoundedDate(value) {
         if (!value) return false;
-        // Format attendu strictement YYYY-MM-DD
         if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
         const d = new Date(value + "T00:00:00");
         if (isNaN(d.getTime())) return false;
@@ -459,11 +858,13 @@
           const d2 = new Date(endDateInput.value + "T00:00:00");
           const diffDays = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
           if (diffDays > 0) {
-            durationText.textContent = diffDays + (diffDays === 1 ? " jour de location" : " jours de location");
+            const t = TRANSLATIONS[currentLang];
+            durationText.textContent = diffDays + " " + (diffDays === 1 ? t.durationDay : t.durationDays);
             durationBadge.classList.add("show");
           }
         }
       }
+      window.__arc_recalcDuration = calcDuration;
 
       function validateDates() {
         let ok = true;
@@ -472,13 +873,21 @@
         startDateInput.classList.remove("input-error");
         endDateInput.classList.remove("input-error");
 
-        // Corrige/rejette toute valeur hors bornes (blocage anti-année-fantaisiste + anti-date passée)
         if (startDateInput.value && !isValidBoundedDate(startDateInput.value)) {
           startDateInput.value = "";
           startDateInput.classList.add("input-error");
           startHint.classList.add("show");
           ok = false;
         }
+
+        if (startDateInput.value) {
+          endDateInput.disabled = false;
+          endDateInput.min = startDateInput.value;
+        } else {
+          endDateInput.disabled = true;
+          endDateInput.value = "";
+        }
+
         if (endDateInput.value && !isValidBoundedDate(endDateInput.value)) {
           endDateInput.value = "";
           endDateInput.classList.add("input-error");
@@ -486,15 +895,11 @@
           ok = false;
         }
 
-        // La date de fin doit toujours être après la date de début
-        if (startDateInput.value) {
-          endDateInput.min = startDateInput.value;
-          if (endDateInput.value && endDateInput.value < startDateInput.value) {
-            endDateInput.classList.add("input-error");
-            endHint.classList.add("show");
-            endDateInput.value = "";
-            ok = false;
-          }
+        if (startDateInput.value && endDateInput.value && endDateInput.value <= startDateInput.value) {
+          endDateInput.classList.add("input-error");
+          endHint.classList.add("show");
+          endDateInput.value = "";
+          ok = false;
         }
 
         calcDuration();
@@ -505,8 +910,8 @@
       startDateInput.addEventListener("input", validateDates);
       endDateInput.addEventListener("change", validateDates);
       endDateInput.addEventListener("input", validateDates);
+      validateDates();
 
-      // ====== 2. Détection de l'indicatif téléphonique ======
       phoneInput.addEventListener("input", function () {
         const val = phoneInput.value.trim();
         if (val.startsWith("+216") || val.startsWith("00216") || val.startsWith("216")) {
@@ -529,7 +934,6 @@
         nameHint.classList.remove("show");
       });
 
-      // ====== 3. Nettoyage anti-XSS ======
       function sanitizeInput(str) {
         return String(str).replace(/[&<>"']/g, function (m) {
           return {
@@ -544,41 +948,53 @@
 
       function showAlert(message, type) {
         alertMsg.className = `alert-box alert-${type}`;
-        alertMsg.textContent = message;
+        alertMsg.innerHTML = (type === "success" ? '<i class="fa-solid fa-circle-check"></i>' : '<i class="fa-solid fa-circle-exclamation"></i>') + message;
         alertMsg.style.display = "block";
+        alertMsg.scrollIntoView({ behavior: "smooth", block: "center" });
       }
 
-      // ====== 4. Anti-spam : empêche l'envoi répété en rafale ======
-      let lastSubmitTime = 0;
-      const SUBMIT_COOLDOWN_MS = 15000; // 15 secondes entre deux envois
+      const COOLDOWN_KEY = "arc_last_submit_ts";
+      const SUBMIT_COOLDOWN_MS = 15000;
 
-      // ====== 5. Soumission du formulaire et envoi par email ======
+      function getLastSubmitTime() {
+        try { return parseInt(localStorage.getItem(COOLDOWN_KEY) || "0", 10); }
+        catch (e) { return 0; }
+      }
+      function setLastSubmitTime(ts) {
+        try { localStorage.setItem(COOLDOWN_KEY, String(ts)); }
+        catch (e) { /* ignore */ }
+      }
+
       form.addEventListener("submit", function (e) {
         e.preventDefault();
+        const t = TRANSLATIONS[currentLang];
 
-        // Honeypot rempli = très probablement un bot -> on bloque silencieusement
         if (honeypot && honeypot.value.trim() !== "") {
-          showAlert("Une erreur s'est produite. Veuillez réessayer.", "danger");
+          showAlert(t.errGeneric, "danger");
           return;
         }
 
-        // Anti double-envoi rapide
+        if (Date.now() - pageLoadTime < MIN_FILL_TIME_MS) {
+          showAlert(t.errGeneric, "danger");
+          return;
+        }
+
+        const lastSubmitTime = getLastSubmitTime();
         const now2 = Date.now();
         if (now2 - lastSubmitTime < SUBMIT_COOLDOWN_MS) {
-          showAlert("Veuillez patienter quelques secondes avant de renvoyer une demande.", "danger");
+          const waitSec = Math.ceil((SUBMIT_COOLDOWN_MS - (now2 - lastSubmitTime)) / 1000);
+          showAlert(t.errCooldown(waitSec), "danger");
           return;
         }
 
         let valid = true;
 
-        // Validation du nom
         if (!nameInput.value.trim() || nameInput.value.trim().length < 3) {
           nameInput.classList.add("input-error");
           nameHint.classList.add("show");
           valid = false;
         }
 
-        // Validation du téléphone
         const phoneRegex = /^[+]?[0-9\s\-]{8,15}$/;
         if (!phoneRegex.test(phoneInput.value.trim())) {
           phoneInput.classList.add("input-error");
@@ -586,7 +1002,6 @@
           valid = false;
         }
 
-        // Re-validation stricte des dates (bloque toute manipulation manuelle du champ)
         if (!isValidBoundedDate(startDateInput.value) || !isValidBoundedDate(endDateInput.value)) {
           valid = false;
         }
@@ -597,23 +1012,21 @@
         }
 
         if (!valid) {
-          showAlert("Veuillez corriger les champs indiqués en rouge.", "danger");
+          showAlert(t.errFields, "danger");
           return;
         }
 
-        // Désactiver le bouton pendant l'envoi
         submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span>Envoi en cours...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
+        submitBtn.querySelector("span").textContent = t.submitBtnSending;
 
         const d1 = new Date(startDateInput.value + "T00:00:00");
         const d2 = new Date(endDateInput.value + "T00:00:00");
         const nbJours = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
 
-        // Préparation des données nettoyées
         const reservationData = {
           client_name: sanitizeInput(nameInput.value.trim()),
           client_phone: sanitizeInput(phoneInput.value.trim()),
-          car_model: sanitizeInput(document.getElementById("carSelect").value),
+          car_model: sanitizeInput(carSelect.value),
           agency: sanitizeInput(document.getElementById("agencySelect").value),
           start_date: startDateInput.value,
           end_date: endDateInput.value,
@@ -621,42 +1034,76 @@
           notes: sanitizeInput(document.getElementById("notes").value.trim() || "Aucune")
         };
 
-        /*
-           Google Apps Script Web App :
-           - Le formulaire envoie les données à GOOGLE_SCRIPT_URL (défini en haut du script).
-           - Le script Apps Script (côté Google) ajoute la ligne dans Google Sheets ET
-             envoie l'email de notification (voir le code Apps Script fourni séparément).
-           - mode: "no-cors" est obligatoire ici car Apps Script ne gère pas les requêtes
-             preflight CORS proprement -> du coup on ne peut pas lire la vraie réponse
-             (elle est "opaque"). On considère l'envoi réussi si fetch() ne plante pas
-             au niveau réseau. Pour vérifier réellement que ça marche, va checker ton
-             Google Sheet après un test.
-        */
+        // 1) Google Sheets — best-effort, on ne peut pas lire la vraie réponse (no-cors)
         fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(reservationData)
-        })
-          .then(function () {
-            lastSubmitTime = Date.now();
-            showAlert("Votre demande de réservation a été envoyée avec succès ! Nous vous contacterons sous 60 min.", "success");
-            form.reset();
-            flagContainer.textContent = "";
-            durationBadge.classList.remove("show");
-            startDateInput.min = todayStr;
-            startDateInput.max = maxDateStr;
-            endDateInput.min = todayStr;
-            endDateInput.max = maxDateStr;
+        }).catch(function (error) {
+          console.error("Échec de l'envoi vers Google Sheets :", error);
+        });
+
+        // 2) Email direct via Web3Forms — celui-ci donne une vraie confirmation
+        //    de succès/échec, indépendante du Apps Script.
+        const emailConfigured = WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.indexOf("COLLE_TA_CLE") === -1;
+
+        const finishOk = function () {
+          setLastSubmitTime(Date.now());
+          showAlert(t.errSuccess, "success");
+          form.reset();
+          flagContainer.textContent = "";
+          durationBadge.classList.remove("show");
+          carPreviewBox.classList.remove("show");
+          notesCounter.textContent = "0 / 500";
+          startDateInput.min = todayStr;
+          startDateInput.max = maxDateStr;
+          endDateInput.min = todayStr;
+          endDateInput.max = maxDateStr;
+          validateDates();
+        };
+        const finishFail = function (error) {
+          console.error("Échec de l'envoi de l'email :", error);
+          showAlert(t.errSend, "danger");
+        };
+        const resetBtn = function () {
+          submitBtn.disabled = false;
+          submitBtn.querySelector("span").textContent = t.submitBtn;
+        };
+
+        if (emailConfigured) {
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({
+              access_key: WEB3FORMS_ACCESS_KEY,
+              subject: "Nouvelle réservation - " + reservationData.car_model,
+              from_name: "Amine Rent a Car - Site web",
+              "Client": reservationData.client_name,
+              "Téléphone": reservationData.client_phone,
+              "Véhicule": reservationData.car_model,
+              "Agence": reservationData.agency,
+              "Date début": reservationData.start_date,
+              "Date fin": reservationData.end_date,
+              "Durée (jours)": reservationData.duration_days,
+              "Remarques": reservationData.notes
+            })
           })
-          .catch(function (error) {
-            console.error("Échec de l'envoi vers Google Sheets :", error);
-            showAlert("Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou nous contacter directement.", "danger");
-          })
-          .finally(function () {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `<span>Confirmer la réservation</span> <i class="fa-solid fa-paper-plane"></i>`;
-          });
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (data && data.success) { finishOk(); }
+              else { finishFail(data); }
+            })
+            .catch(finishFail)
+            .finally(resetBtn);
+        } else {
+          // Clé Web3Forms pas encore configurée : on garde l'ancien comportement
+          // (confirmation optimiste basée sur l'envoi vers Google Sheets seulement).
+          setTimeout(function () {
+            finishOk();
+            resetBtn();
+          }, 400);
+        }
       });
     });
   </script>
