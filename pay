@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Acompte | Amine Rent A Car</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<style>
+:root{--ink:#1C1F22;--red:#D62828;--green:#2FAE60;--gold:#C9A227;--line:#d9dad6}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,'Segoe UI',Tahoma,sans-serif;background:#F1F2F0;color:#202225}
+header{background:var(--ink);color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+main{max-width:560px;margin:0 auto;padding:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+input{padding:10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;width:100%}
+button,.btn{border:0;border-radius:8px;padding:11px 16px;font:700 15px inherit;color:#fff;background:var(--red);cursor:pointer;display:inline-block;text-decoration:none}
+.dark{background:var(--ink)}.sm{padding:6px 12px;font-size:13px}
+.msg{color:var(--red);font-weight:600;margin:8px 0}.ok{color:#1d7a43;font-weight:700}.soft{color:#63676b;font-size:13px}
+.bank{background:#F1F2F0;border-radius:10px;padding:12px;margin-top:10px}
+.rib{font-family:ui-monospace,Consolas,monospace;font-weight:700;color:#A11F1F;word-break:break-all;direction:ltr;display:block;margin:6px 0}
+.warn{background:#fff6dc;border-inline-start:4px solid var(--gold);padding:12px;border-radius:8px;font-size:14px}
+table{width:100%;border-collapse:collapse}td{padding:6px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:end;font-weight:700}
+[hidden]{display:none!important}
+</style></head>
+<body>
+<header><b>AMINE RENT A CAR</b><button class="dark sm" id="lb" type="button">العربية</button></header>
+<main>
+<div class="card" id="gate"><h2 style="margin-top:0" id="t_h"></h2><p class="soft" id="t_p"></p>
+  <p><input id="ph" type="tel" inputmode="tel" placeholder="22123456" autocomplete="tel"></p>
+  <button id="go" type="button"></button><div class="msg" id="gm"></div></div>
+<div id="info" hidden>
+  <div class="card"><h2 style="margin-top:0" id="t_sum"></h2><table id="sum"></table>
+    <p class="soft" id="t_est" style="margin-bottom:0"></p></div>
+  <div class="card"><h2 style="margin-top:0" id="t_bank"></h2><p class="soft" id="t_bankp"></p><div id="banks"></div></div>
+  <div class="card"><h2 style="margin-top:0" id="t_up"></h2>
+    <div class="warn" id="t_warn"></div>
+    <p><input id="file" type="file" accept="image/jpeg,image/png,image/webp,application/pdf"></p>
+    <button id="send" type="button"></button><div class="msg" id="um"></div><div class="ok" id="uok"></div></div>
+</div>
+</main>
+<script>
+const SB=supabase.createClient("https://qhxbiinjlggazjvriyru.supabase.co","sb_publishable_iBU_N-N9zjURavH4GuZLxA_f_BNxE6A");
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const BID=new URLSearchParams(location.search).get("b")||"";
+const T={fr:{h:"Payer l'acompte",p:"Entrez le numéro de téléphone utilisé pour la demande.",go:"Continuer",bad:"Demande introuvable ou téléphone incorrect.",sum:"Récapitulatif",days:"Durée",sub:"Total HTVA",vat:"TVA",levy:"Taxe de location (par jour)",tot:"Total estimé TTC",dep:"Acompte à verser",rec:"Déjà vérifié",rem:"Reste estimé",est:"Montants estimés : l'équipe confirme le prix final lors de l'appel. Votre demande n'est pas une réservation confirmée tant que le paiement n'est pas vérifié.",bank:"Coordonnées bancaires",bankp:"Faites le virement sur l'un des comptes, après notre appel de confirmation.",none:"Les coordonnées seront envoyées par WhatsApp.",holder:"Titulaire",up:"Envoyer la preuve de virement",warn:"Une capture d'écran n'est pas une preuve de paiement : l'équipe vérifie le virement sur le compte avant de confirmer.",send:"Envoyer la preuve",pick:"Choisissez un fichier.",fmt:"Format accepté : JPG, PNG, WebP ou PDF.",size:"Fichier trop lourd (5 Mo max).",fail:"Échec de l'envoi. Réessayez ou écrivez sur WhatsApp.",done:"✅ Preuve reçue. Nous la vérifions et vous contactons.",copy:"Copier",copied:"Copié ✓"},
+ar:{h:"دفع العربون",p:"اكتب رقم الهاتف المستعمل في الطلب.",go:"متابعة",bad:"الطلب غير موجود أو الهاتف غير صحيح.",sum:"الملخص",days:"المدة",sub:"المجموع دون أداء",vat:"الأداء على القيمة المضافة",levy:"معلوم الكراء (لليوم)",tot:"المجموع التقديري مع الأداء",dep:"العربون المطلوب",rec:"المبلغ المتحقَّق منه",rem:"المتبقي التقديري",est:"المبالغ تقديرية: يؤكد الفريق السعر النهائي أثناء المكالمة. طلبك ليس حجزا مؤكدا قبل التحقق من الدفع.",bank:"المعلومات البنكية",bankp:"قم بالتحويل إلى أحد الحسابات بعد مكالمة التأكيد.",none:"سنرسل المعلومات البنكية عبر واتساب.",holder:"صاحب الحساب",up:"إرسال إثبات التحويل",warn:"صورة الشاشة ليست إثبات دفع: يتحقق الفريق من التحويل في الحساب قبل التأكيد.",send:"إرسال الإثبات",pick:"اختر ملفا.",fmt:"الصيغ المقبولة: JPG وPNG وWebP وPDF.",size:"الملف كبير (5 م.ب كحد أقصى).",fail:"فشل الإرسال. أعد المحاولة أو راسلنا على واتساب.",done:"✅ تم استلام الإثبات. سنتحقق منه ونتصل بك.",copy:"نسخ",copied:"تم النسخ ✓"}};
+let L="fr",D=null;const t=k=>T[L][k];
+function paint(){
+  document.documentElement.lang=L;document.documentElement.dir=L==="ar"?"rtl":"ltr";$("lb").textContent=L==="ar"?"Français":"العربية";
+  $("t_h").textContent=t("h");$("t_p").textContent=t("p");$("go").textContent=t("go");$("t_sum").textContent=t("sum");$("t_est").textContent=t("est");
+  $("t_bank").textContent=t("bank");$("t_bankp").textContent=t("bankp");$("t_up").textContent=t("up");$("t_warn").textContent=t("warn");$("send").textContent=t("send");
+  if(D)show();
+}
+function show(){
+  const m=n=>(+n).toFixed(3).replace(/\.?0+$/,"")+" TND";
+  $("sum").innerHTML=[[t("days"),D.days],[t("sub"),m(D.subtotal_htva)],[t("vat"),D.vat_rate+" %"],[t("levy"),m(D.levy)],[t("tot"),m(D.total_estimate)],[t("dep")+" ("+D.deposit_pct+" %)",m(D.deposit)],[t("rec"),m(D.received)],[t("rem"),m(D.remaining)]]
+    .map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join("");
+  $("banks").innerHTML=D.accounts.length?D.accounts.map((a,i)=>`<div class="bank"><b>${esc(a.bank)}</b><div class="soft">${t("holder")} : ${esc(a.holder)}</div><span class="rib">${esc(a.rib)}</span><button class="dark sm" data-c="${i}" type="button">${t("copy")}</button></div>`).join(""):`<p class="soft">${t("none")}</p>`;
+  $("banks").querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{navigator.clipboard?.writeText(D.accounts[b.dataset.c].rib);b.textContent=t("copied")});
+}
+$("lb").onclick=()=>{L=L==="fr"?"ar":"fr";paint()};
+$("go").onclick=async()=>{
+  $("gm").textContent="";
+  const {data,error}=await SB.rpc("get_payment_info",{p_booking:BID,p_phone:$("ph").value});
+  if(error||!data||!data.ok){$("gm").textContent=t("bad");return}
+  D=data;$("gate").hidden=true;$("info").hidden=false;show();
+};
+$("send").onclick=async()=>{
+  $("um").textContent="";$("uok").textContent="";
+  const f=$("file").files[0];
+  if(!f){$("um").textContent=t("pick");return}
+  const ext={"image/jpeg":"jpg","image/png":"png","image/webp":"webp","application/pdf":"pdf"}[f.type];
+  if(!ext){$("um").textContent=t("fmt");return}
+  if(f.size>5*1024*1024){$("um").textContent=t("size");return}
+  $("send").disabled=true;
+  const path=`${BID}/${Date.now()}.${ext}`;
+  const up=await SB.storage.from("payment-proofs").upload(path,f,{contentType:f.type});
+  let ok=false;
+  if(!up.error){const r=await SB.rpc("submit_proof",{p_booking:BID,p_phone:$("ph").value,p_path:path});ok=!r.error&&r.data&&r.data.ok}
+  $("send").disabled=false;
+  if(ok)$("uok").textContent=t("done");else $("um").textContent=t("fail");
+};
+paint();
+</script>
+</body></html>
